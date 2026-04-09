@@ -1,5 +1,3 @@
-// emailServices.ts
-
 import { Resend } from "resend";
 import type { ContactFormValues } from "../../../shared/types/contact.types.js";
 

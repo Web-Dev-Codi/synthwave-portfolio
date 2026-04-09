@@ -118,16 +118,16 @@ export const Contact = () => {
 
 	return (
 		<section className="section-shell" id="contact">
-			<div className="section-inner">
-				<div className="retro-panel rounded-(--radius-panel) border border-(--color-border-soft) px-6 py-10 sm:px-10 sm:py-14">
+			<div className="section-inner space-y-8">
+				<SectionHeading
+					align="left"
+					eyebrow="06 — Conversion"
+					title="Let’s Build Something Bold"
+				/>
+
+				<div className="section-panel retro-panel rounded-(--radius-panel) border border-(--color-border-soft) px-6 py-10 sm:px-10 sm:py-14">
 					<div className="mx-auto grid max-w-5xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
 						<div className="space-y-6 text-left">
-							<SectionHeading
-								align="left"
-								eyebrow="06 — Conversion"
-								title="Let’s Build Something Bold"
-							/>
-
 							<p className="text-base leading-8 text-(--color-text-muted)">
 								I’m currently open to product, frontend, and full stack
 								opportunities where strong execution and memorable interfaces
@@ -173,7 +173,7 @@ export const Contact = () => {
 								<input
 									aria-describedby="name-error"
 									aria-invalid={Boolean(getFieldError("name"))}
-									className="rounded-2xl border border-[rgba(60,52,137,0.8)] bg-[rgba(13,11,30,0.94)] px-4 py-3 text-(--color-text-primary) outline-none transition focus:border-[rgba(93,202,165,0.8)] focus:shadow-[var(--shadow-cyan)]"
+									className="rounded-2xl border border-[rgba(60,52,137,0.8)] bg-[rgba(13,11,30,0.94)] px-4 py-3 text-(--color-text-primary) outline-none transition focus:border-[rgba(93,202,165,0.8)] focus:shadow-(--shadow-cyan)"
 									id="name"
 									name="name"
 									onChange={handleInputChange}
@@ -195,7 +195,7 @@ export const Contact = () => {
 								<input
 									aria-describedby="email-error"
 									aria-invalid={Boolean(getFieldError("email"))}
-									className="rounded-2xl border border-[rgba(60,52,137,0.8)] bg-[rgba(13,11,30,0.94)] px-4 py-3 text-(--color-text-primary) outline-none transition focus:border-[rgba(93,202,165,0.8)] focus:shadow-[var(--shadow-cyan)]"
+									className="rounded-2xl border border-[rgba(60,52,137,0.8)] bg-[rgba(13,11,30,0.94)] px-4 py-3 text-(--color-text-primary) outline-none transition focus:border-[rgba(93,202,165,0.8)] focus:shadow-(--shadow-cyan)"
 									id="email"
 									name="email"
 									onChange={handleInputChange}
@@ -218,7 +218,7 @@ export const Contact = () => {
 								<textarea
 									aria-describedby="message-error"
 									aria-invalid={Boolean(getFieldError("message"))}
-									className="min-h-44 rounded-2xl border border-[rgba(60,52,137,0.8)] bg-[rgba(13,11,30,0.94)] px-4 py-3 text-(--color-text-primary) outline-none transition focus:border-[rgba(93,202,165,0.8)] focus:shadow-[var(--shadow-cyan)]"
+									className="min-h-44 rounded-2xl border border-[rgba(60,52,137,0.8)] bg-[rgba(13,11,30,0.94)] px-4 py-3 text-(--color-text-primary) outline-none transition focus:border-[rgba(93,202,165,0.8)] focus:shadow-(--shadow-cyan)"
 									id="message"
 									name="message"
 									onChange={handleInputChange}

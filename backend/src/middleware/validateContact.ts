@@ -1,5 +1,3 @@
-// validateContact.ts
-
 import type { NextFunction, Request, Response } from "express";
 import type {
 	ContactFieldErrors,

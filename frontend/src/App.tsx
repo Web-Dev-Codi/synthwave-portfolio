@@ -1,3 +1,5 @@
+import { Navbar } from "./components/layout/Navbar";
+import Starfield from "./canvas/Starfield";
 import Footer from "./components/layout/Footer/Footer";
 import About from "./sections/About/About";
 import Contact from "./sections/Contact/Contact";
@@ -8,8 +10,13 @@ import Skills from "./sections/Skills/Skills";
 
 const App = () => (
 	<div className="app-shell">
-		<div aria-hidden="true" className="starfield-layer" />
+		<Starfield className="starfield-layer" />
+		<div aria-hidden="true" className="app-checker-overlay" />
 		<div aria-hidden="true" className="scanline-overlay" />
+		<div aria-hidden="true" className="noise-overlay" />
+		<div aria-hidden="true" className="vignette-overlay" />
+
+		<Navbar />
 
 		<main className="site-main">
 			<Hero />

@@ -1,5 +1,3 @@
-// ratelimiter.ts
-
 import rateLimit from "express-rate-limit";
 
 export const contactRateLimiter = rateLimit({

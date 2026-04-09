@@ -27,6 +27,9 @@
    --hero-glow: radial-gradient(circle at 50% 32%, rgba(127, 119, 221, 0.24), transparent 48%);
    --grid-line: rgba(127, 119, 221, 0.18);
    --grid-line-strong: rgba(93, 202, 165, 0.3);
+   --checker-line-soft: rgba(127, 119, 221, 0.12);
+   --checker-line-strong: rgba(127, 119, 221, 0.22);
+   --navbar-height: 5.75rem;
    --radius-panel: 1.5rem;
    --radius-pill: 999px;
    --section-width: 72rem;

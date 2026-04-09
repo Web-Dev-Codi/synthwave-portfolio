@@ -50,11 +50,133 @@ button {
 .app-shell {
 	position: relative;
 	overflow: clip;
+	min-height: 100vh;
 }
 
 .site-main {
 	position: relative;
 	z-index: 1;
+	padding-top: calc(var(--navbar-height) - 0.75rem);
+}
+
+.site-navbar {
+	position: fixed;
+	top: 0;
+	inset-inline: 0;
+	z-index: 40;
+	padding-block: 1rem;
+	transition:
+		background-color 220ms ease,
+		box-shadow 220ms ease,
+		backdrop-filter 220ms ease;
+}
+
+.site-navbar-scrolled {
+	backdrop-filter: blur(18px);
+	background: rgba(11, 9, 24, 0.78);
+	box-shadow: 0 1px 0 rgba(127, 119, 221, 0.24);
+}
+
+.site-navbar::after {
+	position: absolute;
+	inset-inline: 0;
+	bottom: 0;
+	height: 1px;
+	background: linear-gradient(
+		90deg,
+		transparent 0%,
+		rgba(127, 119, 221, 0.82) 18%,
+		rgba(127, 119, 221, 0.82) 82%,
+		transparent 100%
+	);
+	content: "";
+	opacity: 0.75;
+}
+
+.site-navbar-brand {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	border: 1px solid rgba(127, 119, 221, 0.5);
+	border-radius: 0.75rem;
+	background: rgba(83, 74, 183, 0.26);
+	padding: 0.8rem 1.1rem;
+	font-family: var(--font-display);
+	font-size: 0.7rem;
+	letter-spacing: 0.08em;
+	color: rgba(175, 169, 236, 1);
+	box-shadow: 0 0 18px rgba(127, 119, 221, 0.12);
+	transition:
+		transform 180ms ease,
+		box-shadow 180ms ease,
+		background-color 180ms ease;
+}
+
+.site-navbar-brand:hover,
+.site-navbar-brand:focus-visible {
+	transform: translateY(-1px);
+	box-shadow: 0 0 22px rgba(127, 119, 221, 0.22);
+	background: rgba(83, 74, 183, 0.34);
+}
+
+.site-navbar-links {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: flex-end;
+	gap: 0.85rem;
+}
+
+.site-nav-link {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-width: 7rem;
+	border-radius: 0.75rem;
+	border: 1px solid transparent;
+	padding: 0.8rem 1rem;
+	font-family: var(--font-display);
+	font-size: 0.62rem;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	transition:
+		transform 180ms ease,
+		box-shadow 180ms ease,
+		background-color 180ms ease,
+		border-color 180ms ease,
+		color 180ms ease;
+}
+
+.site-nav-link:hover,
+.site-nav-link:focus-visible {
+	transform: translateY(-1px);
+}
+
+.site-nav-link-secondary {
+	border-color: rgba(83, 74, 183, 0.78);
+	background: rgba(19, 16, 43, 0.72);
+	color: rgba(127, 119, 221, 1);
+	box-shadow: 0 0 14px rgba(83, 74, 183, 0.12);
+}
+
+.site-nav-link-secondary:hover,
+.site-nav-link-secondary:focus-visible,
+.site-nav-link-active {
+	background: rgba(40, 33, 86, 0.84);
+	box-shadow: 0 0 24px rgba(127, 119, 221, 0.2);
+	color: rgba(175, 169, 236, 1);
+}
+
+.site-nav-link-primary {
+	border-color: rgba(212, 83, 126, 0.82);
+	background: rgba(212, 83, 126, 0.9);
+	color: rgba(251, 234, 240, 1);
+	box-shadow: 0 0 18px rgba(212, 83, 126, 0.18);
+}
+
+.site-nav-link-primary:hover,
+.site-nav-link-primary:focus-visible {
+	background: rgba(224, 102, 143, 0.96);
+	box-shadow: 0 0 30px rgba(212, 83, 126, 0.32);
 }
 
 .section-shell {
@@ -81,6 +203,61 @@ button {
 .section-inner {
 	width: min(calc(100% - 2rem), var(--section-width));
 	margin-inline: auto;
+}
+
+.section-panel {
+	position: relative;
+	z-index: 1;
+}
+
+.section-heading {
+	opacity: 0;
+	transform: translate3d(0, 18px, 0);
+}
+
+.section-heading-visible {
+	animation: section-rise 640ms ease-out both;
+}
+
+.timeline-track {
+	position: absolute;
+	left: 0.75rem;
+	top: 0.5rem;
+	height: calc(100% - 1rem);
+	width: 1px;
+	transform: scaleY(0);
+	transform-origin: top;
+	background: linear-gradient(
+		180deg,
+		rgba(127, 119, 221, 0.72) 0%,
+		rgba(93, 202, 165, 0.72) 100%
+	);
+	box-shadow: 0 0 18px rgba(127, 119, 221, 0.18);
+	transition: transform 700ms ease-out;
+}
+
+.timeline-track-visible {
+	transform: scaleY(1);
+}
+
+.timeline-entry {
+	opacity: 0;
+	transition:
+		opacity 560ms ease-out,
+		transform 560ms ease-out;
+}
+
+.timeline-entry-left {
+	transform: translate3d(-24px, 0, 0);
+}
+
+.timeline-entry-right {
+	transform: translate3d(24px, 0, 0);
+}
+
+.timeline-entry-visible {
+	opacity: 1;
+	transform: translate3d(0, 0, 0);
 }
 
 .pixel-heading {
@@ -145,4 +322,35 @@ button {
 	height: 16rem;
 	background: rgba(93, 202, 165, 0.12);
 	animation-delay: 1.2s;
+}
+
+@media (max-width: 640px) {
+	.site-main {
+		padding-top: calc(var(--navbar-height) + 0.5rem);
+	}
+
+	.site-navbar-brand {
+		font-size: 0.62rem;
+	}
+
+	.site-nav-link {
+		min-width: 0;
+		padding: 0.72rem 0.9rem;
+		font-size: 0.56rem;
+	}
+
+	.timeline-track {
+		left: 0.75rem;
+	}
+}
+
+@media (min-width: 768px) {
+	.timeline-track {
+		left: 50%;
+		transform: translateX(-50%) scaleY(0);
+	}
+
+	.timeline-track-visible {
+		transform: translateX(-50%) scaleY(1);
+	}
 }

@@ -1,5 +1,3 @@
-// place to handle contact form submission
-
 import type { Request, Response } from "express";
 import type { ContactApiResponse } from "../../../shared/types/contact.types.js";
 import type { ContactResponseLocals } from "../middleware/validateContact.js";
