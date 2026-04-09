@@ -14,8 +14,8 @@ export const Hero = () => {
 	};
 
 	return (
-		<section className="section-shell overflow-hidden pt-28 sm:pt-32" id="hero">
-			<div className="section-inner relative flex min-h-[calc(100vh-6rem)] items-center justify-center">
+		<section className="section-shell overflow-hidden pt-24 sm:pt-32" id="hero">
+			<div className="section-inner relative flex min-h-[48rem] items-start justify-center pb-52 pt-8 sm:min-h-[calc(100vh-6rem)] sm:items-center sm:pb-28 sm:pt-0">
 				<div aria-hidden="true" className="orb-glow hero-orb-left" />
 				<div aria-hidden="true" className="orb-glow hero-orb-right" />
 
@@ -56,7 +56,7 @@ export const Hero = () => {
 					</div>
 				</div>
 
-				<div className="pointer-events-none absolute inset-x-0 bottom-28 flex justify-center">
+				<div className="pointer-events-none absolute inset-x-0 -bottom-20 flex justify-center sm:bottom-18 lg:bottom-28">
 					<div className="sun-disc" />
 				</div>
 
