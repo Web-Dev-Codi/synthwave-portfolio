@@ -1,3 +1,4 @@
+import { motion } from "framer-motion";
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import type {
 	ContactApiResponse,
@@ -8,6 +9,12 @@ import { contactSchema } from "../../../../shared/types/contact.types";
 import Button from "../../components/ui/Button/Button";
 import SectionHeading from "../../components/ui/SectionHeading";
 import { profile } from "../../data/profile";
+import {
+	fadeUpVariants,
+	scaleUpVariants,
+	staggerContainerVariants,
+	defaultViewport,
+} from "../../utils/animations";
 
 const initialContactValues: ContactFormValues = {
 	email: "",
@@ -122,12 +129,27 @@ export const Contact = () => {
 				<SectionHeading
 					align="left"
 					eyebrow="06 — Conversion"
-					title="Let’s Build Something Bold"
+					title="Let's Build Something Bold"
 				/>
 
-				<div className="section-panel retro-panel rounded-(--radius-panel) border border-(--color-border-soft) px-6 py-10 sm:px-10 sm:py-14">
-					<div className="mx-auto grid max-w-5xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-						<div className="space-y-6 text-left">
+				<motion.div
+					className="section-panel retro-panel rounded-(--radius-panel) border border-(--color-border-soft) px-6 py-10 sm:px-10 sm:py-14"
+					initial="hidden"
+					whileInView="visible"
+					viewport={defaultViewport}
+					variants={fadeUpVariants}
+				>
+					<motion.div
+						className="mx-auto grid max-w-5xl gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start"
+						initial="hidden"
+						whileInView="visible"
+						viewport={defaultViewport}
+						variants={staggerContainerVariants}
+					>
+						<motion.div
+							className="space-y-6 text-left"
+							variants={scaleUpVariants}
+						>
 							<p className="text-base leading-8 text-(--color-text-muted)">
 								I’m currently open to product, frontend, and full stack
 								opportunities where strong execution and memorable interfaces
@@ -163,7 +185,7 @@ export const Contact = () => {
 									</Button>
 								))}
 							</div>
-						</div>
+						</motion.div>
 
 						<form className="grid gap-5" noValidate onSubmit={handleSubmit}>
 							<label className="grid gap-2" htmlFor="name">
@@ -248,8 +270,8 @@ export const Contact = () => {
 								{submissionState.message}
 							</p>
 						</form>
-					</div>
-				</div>
+					</motion.div>
+				</motion.div>
 			</div>
 		</section>
 	);

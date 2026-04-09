@@ -47,8 +47,11 @@ const SynthGridCanvas = ({ className, revealProgress = 1 }: SynthGridProps) => {
 
 			context.clearRect(0, 0, width, height);
 
-			context.lineWidth = 1;
-			context.strokeStyle = `rgba(212, 83, 126, ${0.45 + reveal * 0.18})`;
+			// Thinner 0.5px lines for subtle grid effect
+			context.lineWidth = 0.5;
+
+			// Horizon line - vibrant pink (#ff2975)
+			context.strokeStyle = `rgba(255, 41, 117, ${0.55 + reveal * 0.25})`;
 			context.beginPath();
 			context.moveTo(0, horizonY);
 			context.lineTo(width, horizonY);
@@ -56,6 +59,7 @@ const SynthGridCanvas = ({ className, revealProgress = 1 }: SynthGridProps) => {
 
 			const verticalLineCount = Math.max(9, Math.floor(width / 92));
 
+			// Vertical perspective lines - pink gradient
 			for (
 				let index = -verticalLineCount;
 				index <= verticalLineCount;
@@ -63,9 +67,10 @@ const SynthGridCanvas = ({ className, revealProgress = 1 }: SynthGridProps) => {
 			) {
 				const ratio = index / verticalLineCount;
 				const bottomX = vanishingPointX + ratio * width * 0.78;
+				const opacity = 0.15 + reveal * 0.35;
 
 				context.beginPath();
-				context.strokeStyle = `rgba(212, 83, 126, ${0.12 + reveal * 0.28})`;
+				context.strokeStyle = `rgba(255, 41, 117, ${opacity})`;
 				context.moveTo(vanishingPointX, horizonY);
 				context.lineTo(bottomX, height);
 				context.stroke();
@@ -73,15 +78,21 @@ const SynthGridCanvas = ({ className, revealProgress = 1 }: SynthGridProps) => {
 
 			const horizontalLineCount = 16;
 
+			// Horizontal moving lines - cyan to purple gradient based on depth
 			for (let index = 0; index <= horizontalLineCount; index += 1) {
 				const depth = (index / horizontalLineCount + travel) % 1;
 				const easedDepth = depth * depth;
 				const y = horizonY + easedDepth * floorDepth;
 				const halfWidth = width * (0.08 + easedDepth * 0.74);
-				const opacity = 0.1 + easedDepth * (0.42 + reveal * 0.12);
+				const opacity = 0.12 + easedDepth * (0.5 + reveal * 0.15);
+
+				// Blend between cyan (near) and purple (far)
+				const r = Math.floor(0 + easedDepth * 140);
+				const g = Math.floor(208 - easedDepth * 178);
+				const b = Math.floor(255 - easedDepth * 17);
 
 				context.beginPath();
-				context.strokeStyle = `rgba(127, 119, 221, ${opacity})`;
+				context.strokeStyle = `rgba(${r}, ${g}, ${b}, ${opacity})`;
 				context.moveTo(vanishingPointX - halfWidth, y);
 				context.lineTo(vanishingPointX + halfWidth, y);
 				context.stroke();

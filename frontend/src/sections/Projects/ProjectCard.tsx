@@ -1,9 +1,11 @@
+import { motion } from "framer-motion";
 import Button from "../../components/ui/Button/Button";
 import NeonBadge from "../../components/ui/NeonBadge/NeonBadge";
 import { cn } from "../../utils/cn";
+import { cardHoverAnimation } from "../../utils/animations";
 
 type ProjectCardProps = {
-	accent: "cyan" | "pink" | "purple";
+	accent: "amber" | "cyan" | "pink" | "purple";
 	description: string;
 	githubUrl: string;
 	liveUrl: string;
@@ -12,6 +14,7 @@ type ProjectCardProps = {
 };
 
 const accentClassMap = {
+	amber: "accent-amber",
 	cyan: "accent-cyan",
 	pink: "accent-pink",
 	purple: "accent-purple",
@@ -25,11 +28,12 @@ export const ProjectCard = ({
 	stack,
 	title,
 }: ProjectCardProps) => (
-	<article
+	<motion.article
 		className={cn(
 			"retro-panel neon-card flex h-full flex-col rounded-3xl border p-5 sm:p-6",
 			accentClassMap[accent],
 		)}
+		whileHover={cardHoverAnimation}
 	>
 		<div className="mb-6 rounded-2xl border border-[rgba(255,255,255,0.06)] bg-[linear-gradient(135deg,rgba(19,15,38,0.92),rgba(26,23,64,0.72))] p-6">
 			<div className="flex aspect-[16/9] items-center justify-center rounded-xl border border-dashed border-[rgba(255,255,255,0.14)] bg-[rgba(8,7,18,0.4)] text-center">
@@ -79,7 +83,7 @@ export const ProjectCard = ({
 				</Button>
 			</div>
 		</div>
-	</article>
+	</motion.article>
 );
 
 export default ProjectCard;

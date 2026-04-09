@@ -14,24 +14,45 @@
    --color-text-primary: #eeedfe;
    --color-text-muted: #c9c5f7;
    --color-text-dim: #8f88c8;
-   --color-pink: #d4537e;
-   --color-cyan: #5dcaa5;
-   --color-purple: #7f77dd;
-   --color-amber: #f0997b;
-   --shadow-pink: 0 0 18px rgba(212, 83, 126, 0.25), 0 0 48px rgba(212, 83, 126, 0.18);
-   --shadow-cyan: 0 0 18px rgba(93, 202, 165, 0.24), 0 0 48px rgba(93, 202, 165, 0.14);
-   --shadow-purple: 0 0 18px rgba(127, 119, 221, 0.24), 0 0 48px rgba(127, 119, 221, 0.16);
-   --shadow-amber: 0 0 18px rgba(240, 153, 123, 0.22), 0 0 48px rgba(240, 153, 123, 0.12);
+
+   /* Vibrant Synthwave Colors - sRGB fallback */
+   --color-pink: #ff2975;
+   --color-cyan: #00d0ff;
+   --color-purple: #8c1eff;
+   --color-amber: #ff901f;
+
+   /* Aggressive multi-layer neon glow shadows */
+   --shadow-pink: 0 0 8px rgba(255, 41, 117, 0.6), 0 0 20px rgba(255, 41, 117, 0.4), 0 0 40px rgba(255, 41, 117, 0.2);
+   --shadow-cyan: 0 0 8px rgba(0, 208, 255, 0.6), 0 0 20px rgba(0, 208, 255, 0.4), 0 0 40px rgba(0, 208, 255, 0.2);
+   --shadow-purple: 0 0 8px rgba(140, 30, 255, 0.6), 0 0 20px rgba(140, 30, 255, 0.4), 0 0 40px rgba(140, 30, 255, 0.2);
+   --shadow-amber: 0 0 8px rgba(255, 144, 31, 0.6), 0 0 20px rgba(255, 144, 31, 0.4), 0 0 40px rgba(255, 144, 31, 0.2);
+
+   /* Hover intensified shadows */
+   --shadow-pink-hover: 0 0 12px rgba(255, 41, 117, 0.8), 0 0 30px rgba(255, 41, 117, 0.6), 0 0 60px rgba(255, 41, 117, 0.4);
+   --shadow-cyan-hover: 0 0 12px rgba(0, 208, 255, 0.8), 0 0 30px rgba(0, 208, 255, 0.6), 0 0 60px rgba(0, 208, 255, 0.4);
+   --shadow-purple-hover: 0 0 12px rgba(140, 30, 255, 0.8), 0 0 30px rgba(140, 30, 255, 0.6), 0 0 60px rgba(140, 30, 255, 0.4);
+   --shadow-amber-hover: 0 0 12px rgba(255, 144, 31, 0.8), 0 0 30px rgba(255, 144, 31, 0.6), 0 0 60px rgba(255, 144, 31, 0.4);
+
    --surface-gradient: linear-gradient(180deg, rgba(16, 14, 36, 0.92) 0%, rgba(7, 6, 18, 0.95) 100%);
-   --chrome-gradient: linear-gradient(90deg, #ffc0d8 0%, #bf88ff 46%, #90f2ff 100%);
-   --hero-glow: radial-gradient(circle at 50% 32%, rgba(127, 119, 221, 0.24), transparent 48%);
-   --grid-line: rgba(127, 119, 221, 0.18);
-   --grid-line-strong: rgba(93, 202, 165, 0.3);
-   --checker-line-soft: rgba(127, 119, 221, 0.12);
-   --checker-line-strong: rgba(127, 119, 221, 0.22);
+   --chrome-gradient: linear-gradient(90deg, #ffd319 0%, #ff2975 35%, #8c1eff 70%, #00d0ff 100%);
+   --hero-glow: radial-gradient(circle at 50% 32%, rgba(140, 30, 255, 0.35), transparent 48%);
+   --grid-line: rgba(140, 30, 255, 0.25);
+   --grid-line-strong: rgba(0, 208, 255, 0.4);
+   --checker-line-soft: rgba(140, 30, 255, 0.15);
+   --checker-line-strong: rgba(140, 30, 255, 0.28);
    --navbar-height: 5.75rem;
    --radius-panel: 1.5rem;
    --radius-pill: 999px;
    --section-width: 72rem;
    --section-padding-block: clamp(5rem, 9vw, 8rem);
+ }
+
+ /* Wide-gamut P3 colors for supported displays */
+ @media (color-gamut: p3) {
+   :root {
+     --color-pink: color(display-p3 1 0.22 0.46);
+     --color-cyan: color(display-p3 0 0.82 1);
+     --color-purple: color(display-p3 0.55 0.12 1);
+     --color-amber: color(display-p3 1 0.56 0.12);
+   }
  }

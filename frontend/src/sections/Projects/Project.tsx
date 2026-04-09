@@ -1,5 +1,12 @@
+import { motion } from "framer-motion";
 import SectionHeading from "../../components/ui/SectionHeading";
 import { projects } from "../../data/projects";
+import {
+	fadeUpVariants,
+	scaleUpVariants,
+	staggerContainerVariants,
+	defaultViewport,
+} from "../../utils/animations";
 import ProjectCard from "./ProjectCard";
 
 export const Projects = () => (
@@ -7,13 +14,27 @@ export const Projects = () => (
 		<div className="section-inner space-y-8">
 			<SectionHeading align="left" eyebrow="04 — Proof" title="Projects" />
 
-			<div className="section-panel retro-panel rounded-(--radius-panel) border border-(--color-border-soft) p-6 sm:p-8">
-				<div className="grid gap-6 lg:grid-cols-3">
+			<motion.div
+				className="section-panel retro-panel rounded-(--radius-panel) border border-(--color-border-soft) p-6 sm:p-8"
+				initial="hidden"
+				whileInView="visible"
+				viewport={defaultViewport}
+				variants={fadeUpVariants}
+			>
+				<motion.div
+					className="grid gap-6 md:grid-cols-2"
+					initial="hidden"
+					whileInView="visible"
+					viewport={defaultViewport}
+					variants={staggerContainerVariants}
+				>
 					{projects.map((project) => (
-						<ProjectCard key={project.title} {...project} />
+						<motion.div key={project.title} variants={scaleUpVariants}>
+							<ProjectCard {...project} />
+						</motion.div>
 					))}
-				</div>
-			</div>
+				</motion.div>
+			</motion.div>
 		</div>
 	</section>
 );
