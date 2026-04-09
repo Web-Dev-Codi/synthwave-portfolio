@@ -1,0 +1,92 @@
+@keyframes cursor-blink {
+	0%,
+	49% {
+		opacity: 1;
+	}
+
+	50%,
+	100% {
+		opacity: 0;
+	}
+}
+
+@keyframes glow-pulse {
+	0%,
+	100% {
+		box-shadow:
+			0 0 0 rgba(0, 0, 0, 0),
+			var(--shadow-purple);
+	}
+
+	50% {
+		box-shadow:
+			0 0 0 rgba(0, 0, 0, 0),
+			0 0 26px rgba(127, 119, 221, 0.35),
+			0 0 72px rgba(93, 202, 165, 0.12);
+	}
+}
+
+@keyframes float-y {
+	0%,
+	100% {
+		transform: translate3d(0, 0, 0);
+	}
+
+	50% {
+		transform: translate3d(0, -10px, 0);
+	}
+}
+
+@keyframes scanline-shift {
+	from {
+		transform: translateY(-24px);
+	}
+
+	to {
+		transform: translateY(24px);
+	}
+}
+
+@keyframes stars-pan {
+	from {
+		transform: translate3d(0, 0, 0);
+	}
+
+	to {
+		transform: translate3d(-32px, 18px, 0);
+	}
+}
+
+@keyframes orbit-glow {
+	0%,
+	100% {
+		opacity: 0.3;
+	}
+
+	50% {
+		opacity: 0.72;
+	}
+}
+
+@keyframes sun-rise {
+	from {
+		opacity: 0.65;
+		transform: translate3d(0, 14px, 0) scale(0.98);
+	}
+
+	to {
+		opacity: 1;
+		transform: translate3d(0, 0, 0) scale(1);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		animation-duration: 0.01ms !important;
+		animation-iteration-count: 1 !important;
+		scroll-behavior: auto !important;
+		transition-duration: 0.01ms !important;
+	}
+}
