@@ -153,6 +153,19 @@
 	content: "";
 }
 
+/* Reduce scanline on mobile — avoid visual fatigue on small screens */
+@media (max-width: 640px) {
+	.scanline-overlay {
+		opacity: 0.2;
+	}
+}
+/* Disable scanline animation for reduced-motion users */
+@media (prefers-reduced-motion: reduce) {
+	.scanline-overlay {
+		opacity: 0;
+	}
+}
+
 .app-checker-overlay {
 	position: fixed;
 	inset: 0;
