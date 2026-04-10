@@ -382,11 +382,15 @@
 .hero-sun-wrap {
 	position: absolute;
 	inset-inline: 0;
-	bottom: 13%;
+	bottom: 24%;
 	display: flex;
 	justify-content: center;
 	filter: drop-shadow(0 0 30px rgba(255, 41, 117, 0.5));
-	transform-origin: center bottom;
+}
+
+/* Centers sun disc on the horizon line */
+.hero-sun-inner {
+	transform: translateY(50%);
 }
 
 .sun-disc {

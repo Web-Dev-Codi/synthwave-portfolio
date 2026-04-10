@@ -1,10 +1,17 @@
 import { motion } from "framer-motion";
 import SynthGrid from "../../canvas/SynthGrid";
+import VHSNoiseCanvas from "../../canvas/VHSNoiseCanvas";
 import Button from "../../components/ui/Button/Button";
 import GlitchText from "../../components/ui/GlitchText/GlitchText";
 import { profile } from "../../data/profile";
 import { useScrollProgress } from "../../hooks/useScrollAnimation";
-import { heroItemVariants, heroStaggerVariants } from "../../utils/animations";
+import {
+	heroCtaVariants,
+	heroNameVariants,
+	heroRoleVariants,
+	heroStaggerVariants,
+	heroSummaryVariants,
+} from "../../utils/animations";
 
 export const Hero = () => {
 	const { progress, ref } = useScrollProgress<HTMLElement>({
@@ -38,10 +45,13 @@ export const Hero = () => {
 				<div aria-hidden="true" className="orb-glow hero-orb-left" />
 				<div aria-hidden="true" className="orb-glow hero-orb-right" />
 
-				<div
+				<motion.div
 					aria-hidden="true"
 					className="hero-scene-shell"
 					style={{ clipPath: `inset(${sceneInset}% 0 0 0)` }}
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1 }}
+					transition={{ duration: 1.2, ease: "easeOut" }}
 				>
 					<div
 						className="hero-horizon-line"
@@ -90,7 +100,9 @@ export const Hero = () => {
 							transform: `translate3d(0, ${sceneLift * -0.5}px, 0) scale(${sceneScale})`,
 						}}
 					>
-						<div className="sun-disc" />
+						<div className="hero-sun-inner">
+							<div className="sun-disc" />
+						</div>
 					</div>
 
 					<div
@@ -102,7 +114,8 @@ export const Hero = () => {
 					>
 						<SynthGrid revealProgress={sceneReveal} />
 					</div>
-				</div>
+					<VHSNoiseCanvas />
+				</motion.div>
 
 				<motion.div
 					className="relative z-10 flex max-w-4xl flex-col items-center gap-6 text-center"
@@ -110,11 +123,7 @@ export const Hero = () => {
 					animate="visible"
 					variants={heroStaggerVariants}
 				>
-					<motion.span className="terminal-kicker" variants={heroItemVariants}>
-						{profile.siteLabel}
-					</motion.span>
-
-					<motion.div variants={heroItemVariants}>
+					<motion.div variants={heroNameVariants}>
 						<GlitchText
 							as="h1"
 							className="text-4xl leading-[1.4] sm:text-6xl lg:text-7xl"
@@ -127,7 +136,7 @@ export const Hero = () => {
 
 					<motion.p
 						className="pixel-heading neon-text-cyan text-[0.72rem] tracking-[0.34em] sm:text-sm"
-						variants={heroItemVariants}
+						variants={heroRoleVariants}
 					>
 						{profile.role}
 						<span aria-hidden="true" className="cursor-block" />
@@ -135,14 +144,14 @@ export const Hero = () => {
 
 					<motion.p
 						className="muted-copy max-w-2xl text-base leading-8 sm:text-lg"
-						variants={heroItemVariants}
+						variants={heroSummaryVariants}
 					>
 						{profile.summary[0]} {profile.summary[1]}
 					</motion.p>
 
 					<motion.div
 						className="flex flex-col gap-3 sm:flex-row"
-						variants={heroItemVariants}
+						variants={heroCtaVariants}
 					>
 						<Button
 							aria-label="Scroll to the projects section"
