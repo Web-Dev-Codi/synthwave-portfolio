@@ -411,20 +411,35 @@
 	width: min(22rem, 38vw);
 	aspect-ratio: 1;
 	border-radius: 999px;
-	background:
-		repeating-linear-gradient(
-			180deg,
-			rgba(255, 255, 255, 0) 0 16px,
-			rgba(11, 9, 24, 0.75) 16px 20px
-		),
-		linear-gradient(180deg, #ffd319 0%, #ff901f 25%, #ff2975 55%, #8c1eff 100%);
+	/* Base gradient — no stripes here */
+	background: linear-gradient(
+		180deg,
+		#ffd319 0%,
+		#ff901f 25%,
+		#ff2975 55%,
+		#8c1eff 100%
+	);
 	box-shadow:
 		0 0 40px rgba(255, 41, 117, 0.5),
 		0 0 80px rgba(255, 144, 31, 0.4),
 		0 0 120px rgba(140, 30, 255, 0.3);
+	overflow: hidden;
 	animation:
 		sun-rise 900ms ease-out both,
 		sun-pulse 4s ease-in-out infinite alternate;
+}
+/* Stripes on lower half only */
+.sun-disc::before {
+	content: "";
+	position: absolute;
+	/* top:50% constrains the stripe layer to the bottom half */
+	inset: 50% 0 0 0;
+	background: repeating-linear-gradient(
+		180deg,
+		transparent 0px 16px,
+		rgba(11, 9, 24, 0.78) 16px 20px
+	);
+	pointer-events: none;
 }
 
 .hero-grid-floor {

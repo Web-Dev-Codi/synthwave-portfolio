@@ -228,6 +228,11 @@ button {
 	z-index: 1;
 }
 
+/* Hero: override section-shell padding so it fills exactly 100svh */
+#hero {
+	padding-block: 0;
+}
+
 .section-heading {
 	opacity: 0;
 	transform: translate3d(0, 18px, 0);
