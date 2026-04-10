@@ -145,7 +145,7 @@ export const Navbar = () => {
 					<button
 						aria-label="Toggle mobile menu"
 						aria-expanded={isMobileMenuOpen}
-						className="flex max-[699px]:hidden hamburger-button"
+						className="hidden max-[699px]:flex hamburger-button"
 						onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
 						type="button"
 					>

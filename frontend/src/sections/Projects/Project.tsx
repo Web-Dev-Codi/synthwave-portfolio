@@ -2,10 +2,10 @@ import { motion } from "framer-motion";
 import SectionHeading from "../../components/ui/SectionHeading";
 import { projects } from "../../data/projects";
 import {
+	defaultViewport,
 	fadeUpVariants,
 	scaleUpVariants,
 	staggerContainerVariants,
-	defaultViewport,
 } from "../../utils/animations";
 import ProjectCard from "./ProjectCard";
 
