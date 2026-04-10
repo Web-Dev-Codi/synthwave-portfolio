@@ -32,9 +32,9 @@ export const accentNodePulseClassMap: Record<AccentColor, string> = {
 
 export const accentBorderClassMap: Record<AccentColor, string> = {
 	amber:
-		"border-[rgba(240,153,123,0.5)] bg-[rgba(74,21,40,0.2)] text-[var(--color-amber)]",
-	cyan: "border-[rgba(93,202,165,0.5)] bg-[rgba(8,80,65,0.18)] text-[var(--color-cyan)]",
-	pink: "border-[rgba(212,83,126,0.5)] bg-[rgba(74,21,40,0.2)] text-[var(--color-pink)]",
+		"accent-amber border-[rgba(240,153,123,0.5)] bg-[rgba(74,21,40,0.2)] text-[var(--color-amber)]",
+	cyan: "accent-cyan border-[rgba(93,202,165,0.5)] bg-[rgba(8,80,65,0.18)] text-[var(--color-cyan)]",
+	pink: "accent-pink border-[rgba(212,83,126,0.5)] bg-[rgba(74,21,40,0.2)] text-[var(--color-pink)]",
 	purple:
-		"border-[rgba(127,119,221,0.5)] bg-[rgba(38,33,92,0.28)] text-[var(--color-purple)]",
+		"accent-purple border-[rgba(127,119,221,0.5)] bg-[rgba(38,33,92,0.28)] text-[var(--color-purple)]",
 } as const;
