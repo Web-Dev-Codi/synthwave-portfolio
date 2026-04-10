@@ -1,7 +1,11 @@
 import { motion } from "framer-motion";
 import SectionHeading from "../../components/ui/SectionHeading";
-import SynthwaveAvatar from "../../components/ui/SynthwaveAvatar";
+import SynthwaveAvatar from "../../components/ui/SynthwaveAvatar/SynthwaveAvatar";
 import { profile } from "../../data/profile";
+import {
+	accentBorderClassMap as accentClassMap,
+	accentTextClassMap,
+} from "../../utils/accentMaps";
 import {
 	defaultViewport,
 	fadeUpVariants,
@@ -9,20 +13,6 @@ import {
 	staggerContainerVariants,
 } from "../../utils/animations";
 import { cn } from "../../utils/cn";
-
-const accentClassMap = {
-	amber: "accent-amber",
-	cyan: "accent-cyan",
-	pink: "accent-pink",
-	purple: "accent-purple",
-} as const;
-
-const accentTextClassMap = {
-	amber: "text-(--color-amber)",
-	cyan: "text-(--color-cyan)",
-	pink: "text-(--color-pink)",
-	purple: "text-(--color-purple)",
-} as const;
 
 export const About = () => (
 	<section className="section-shell" id="about">

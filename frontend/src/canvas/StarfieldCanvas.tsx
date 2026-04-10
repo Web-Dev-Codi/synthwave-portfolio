@@ -1,20 +1,7 @@
 import { useEffect, useRef } from "react";
 import { usePrefersReducedMotion } from "../hooks/useScrollAnimation";
 import { cn } from "../utils/cn";
-
-type StarfieldProps = {
-	className?: string;
-};
-
-type Star = {
-	baseOpacity: number;
-	color: string;
-	radius: number;
-	twinkleOffset: number;
-	twinkleSpeed: number;
-	x: number;
-	y: number;
-};
+import type { Star } from "./StarfieldCanvas.types";
 
 const starColors = [
 	"rgba(255,255,255,0.95)",
@@ -48,7 +35,7 @@ const createStars = (width: number, height: number) => {
 	);
 };
 
-const StarfieldCanvas = ({ className }: StarfieldProps) => {
+const StarfieldCanvas = ({ className }: StarfieldCanvasProps) => {
 	const canvasRef = useRef<HTMLCanvasElement | null>(null);
 	const starsRef = useRef<Star[]>([]);
 	const prefersReducedMotion = usePrefersReducedMotion();

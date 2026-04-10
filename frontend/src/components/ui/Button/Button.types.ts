@@ -4,8 +4,18 @@ import type {
 	ReactNode,
 } from "react";
 
-export type ButtonAccent = "amber" | "cyan" | "pink" | "purple";
-export type ButtonSize = "md" | "sm";
+import type { AccentColor } from "../../../types/common";
+
+export type ButtonAccent = AccentColor;
+
+export const buttonSizeValues = {
+	Lg: "lg",
+	Md: "md",
+	Sm: "sm",
+} as const;
+
+export type ButtonSize =
+	(typeof buttonSizeValues)[keyof typeof buttonSizeValues];
 
 type SharedButtonProps = {
 	accent?: ButtonAccent;

@@ -6,6 +6,7 @@ const toneClassMap = {
 	cyan: "neon-text-cyan",
 	pink: "neon-text-pink",
 	purple: "neon-text-purple",
+	amber: "neon-text-amber",
 } as const;
 
 export const GlitchText = ({

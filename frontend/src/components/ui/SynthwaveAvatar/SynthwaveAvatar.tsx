@@ -1,10 +1,5 @@
 import { cn } from "../../../utils/cn";
-
-type SynthwaveAvatarProps = {
-	alt?: string;
-	className?: string;
-	src?: string;
-};
+import type { SynthwaveAvatarProps } from "./SynthwaveAvatar.types";
 
 export const SynthwaveAvatar = ({
 	alt = "Profile avatar",
@@ -59,16 +54,82 @@ export const SynthwaveAvatar = ({
 					y2="118"
 				/>
 				{/* Perspective grid lines */}
-				<line stroke="rgba(255,41,117,0.4)" strokeWidth="0.8" x1="100" x2="0" y1="118" y2="200" />
-				<line stroke="rgba(255,41,117,0.32)" strokeWidth="0.8" x1="100" x2="44" y1="118" y2="200" />
-				<line stroke="rgba(255,41,117,0.25)" strokeWidth="0.8" x1="100" x2="72" y1="118" y2="200" />
-				<line stroke="rgba(255,41,117,0.25)" strokeWidth="0.8" x1="100" x2="128" y1="118" y2="200" />
-				<line stroke="rgba(255,41,117,0.32)" strokeWidth="0.8" x1="100" x2="156" y1="118" y2="200" />
-				<line stroke="rgba(255,41,117,0.4)" strokeWidth="0.8" x1="100" x2="200" y1="118" y2="200" />
+				<line
+					stroke="rgba(255,41,117,0.4)"
+					strokeWidth="0.8"
+					x1="100"
+					x2="0"
+					y1="118"
+					y2="200"
+				/>
+				<line
+					stroke="rgba(255,41,117,0.32)"
+					strokeWidth="0.8"
+					x1="100"
+					x2="44"
+					y1="118"
+					y2="200"
+				/>
+				<line
+					stroke="rgba(255,41,117,0.25)"
+					strokeWidth="0.8"
+					x1="100"
+					x2="72"
+					y1="118"
+					y2="200"
+				/>
+				<line
+					stroke="rgba(255,41,117,0.25)"
+					strokeWidth="0.8"
+					x1="100"
+					x2="128"
+					y1="118"
+					y2="200"
+				/>
+				<line
+					stroke="rgba(255,41,117,0.32)"
+					strokeWidth="0.8"
+					x1="100"
+					x2="156"
+					y1="118"
+					y2="200"
+				/>
+				<line
+					stroke="rgba(255,41,117,0.4)"
+					strokeWidth="0.8"
+					x1="100"
+					x2="200"
+					y1="118"
+					y2="200"
+				/>
 				{/* Horizontal grid lines */}
-				<line opacity="0.5" stroke="rgba(0,208,255,0.22)" strokeWidth="0.7" x1="22" x2="178" y1="143" y2="143" />
-				<line opacity="0.4" stroke="rgba(0,208,255,0.18)" strokeWidth="0.7" x1="8" x2="192" y1="162" y2="162" />
-				<line opacity="0.3" stroke="rgba(0,208,255,0.14)" strokeWidth="0.7" x1="0" x2="200" y1="180" y2="180" />
+				<line
+					opacity="0.5"
+					stroke="rgba(0,208,255,0.22)"
+					strokeWidth="0.7"
+					x1="22"
+					x2="178"
+					y1="143"
+					y2="143"
+				/>
+				<line
+					opacity="0.4"
+					stroke="rgba(0,208,255,0.18)"
+					strokeWidth="0.7"
+					x1="8"
+					x2="192"
+					y1="162"
+					y2="162"
+				/>
+				<line
+					opacity="0.3"
+					stroke="rgba(0,208,255,0.14)"
+					strokeWidth="0.7"
+					x1="0"
+					x2="200"
+					y1="180"
+					y2="180"
+				/>
 				{/* Mountains */}
 				<polyline
 					fill="none"

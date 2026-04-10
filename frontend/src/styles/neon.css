@@ -330,6 +330,11 @@
 
 .glitch-layer {
 	opacity: 0;
+	transition: opacity 0.2s ease;
+}
+
+.glitch-text-active .glitch-layer {
+	opacity: 1;
 }
 
 .glitch-layer-foreground {
@@ -348,11 +353,11 @@
 }
 
 .glitch-text-active .glitch-layer-pink {
-	animation: glitch-flicker 420ms ease-out 1;
+	animation: glitch-flicker 420ms ease-out infinite;
 }
 
 .glitch-text-active .glitch-layer-cyan {
-	animation: glitch-flicker 480ms ease-out 1 reverse;
+	animation: glitch-flicker 480ms ease-out infinite reverse;
 }
 
 .hero-scene-shell {
@@ -445,7 +450,7 @@
 .hero-grid-floor {
 	position: absolute;
 	inset-inline: -10%;
-	bottom: -8rem;
+	bottom: 0;
 	height: min(46vh, 24rem);
 	background-image:
 		linear-gradient(to right, rgba(140, 30, 255, 0.3) 0.5px, transparent 0.5px),

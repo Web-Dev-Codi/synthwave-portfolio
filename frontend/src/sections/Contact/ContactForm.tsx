@@ -7,12 +7,7 @@ import type {
 } from "../../../../shared/types/contact.types";
 import { contactSchema } from "../../../../shared/types/contact.types";
 import Button from "../../components/ui/Button/Button";
-
-type SubmissionState = {
-	message: string;
-	tone: "amber" | "cyan" | "pink" | "purple";
-	type: "error" | "idle" | "submitting" | "success";
-};
+import type { SubmissionState } from "./ContactForm.types";
 
 const apiBaseUrl =
 	import.meta.env.VITE_API_BASE_URL?.trim() || "http://localhost:3001";
@@ -130,7 +125,10 @@ export const ContactForm = () => {
 			>
 				{isSubmitting ? "Sending Message…" : "Send Message"}
 			</Button>
-			<p className="min-h-6 text-sm text-(--color-text-muted)" role="status">
+			<p
+				className="min-h-6 text-sm text-(--color-text-muted)"
+				aria-live="polite"
+			>
 				{submissionState.message}
 			</p>
 		</form>

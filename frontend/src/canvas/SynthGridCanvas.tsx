@@ -1,13 +1,12 @@
 import { useEffect, useRef } from "react";
 import { usePrefersReducedMotion } from "../hooks/useScrollAnimation";
 import { cn } from "../utils/cn";
+import type { SynthGridCanvasProps } from "./SynthGridCanvas.types";
 
-type SynthGridProps = {
-	className?: string;
-	revealProgress?: number;
-};
-
-const SynthGridCanvas = ({ className, revealProgress = 1 }: SynthGridProps) => {
+const SynthGridCanvas = ({
+	className,
+	revealProgress = 1,
+}: SynthGridCanvasProps) => {
 	const canvasRef = useRef<HTMLCanvasElement | null>(null);
 	const prefersReducedMotion = usePrefersReducedMotion();
 

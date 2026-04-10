@@ -1,13 +1,7 @@
 import { useScrollAnimation } from "../../hooks/useScrollAnimation";
 import { cn } from "../../utils/cn";
 import GlitchText from "./GlitchText/GlitchText";
-
-type SectionHeadingProps = {
-	align?: "center" | "left";
-	eyebrow: string;
-	className?: string;
-	title: string;
-};
+import type { SectionHeadingProps } from "./SectionHeading.types";
 
 const alignmentClassMap = {
 	center: "items-center text-center",

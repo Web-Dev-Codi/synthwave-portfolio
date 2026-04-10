@@ -1,12 +1,7 @@
-type ProjectPlaceholderProps = {
-	accent?: "amber" | "cyan" | "pink" | "purple";
-};
-
-type PlaceholderColors = {
-	grid: string;
-	sun1: string;
-	sun2: string;
-};
+import type {
+	PlaceholderColors,
+	ProjectPlaceholderProps,
+} from "./ProjectPlaceholder.types";
 
 const accentColorMap: Record<string, PlaceholderColors> = {
 	amber: { grid: "rgba(255,144,31,0.38)", sun1: "#ff901f", sun2: "#ff2975" },
@@ -15,7 +10,9 @@ const accentColorMap: Record<string, PlaceholderColors> = {
 	purple: { grid: "rgba(140,30,255,0.38)", sun1: "#ff2975", sun2: "#8c1eff" },
 };
 
-export const ProjectPlaceholder = ({ accent = "cyan" }: ProjectPlaceholderProps) => {
+export const ProjectPlaceholder = ({
+	accent = "cyan",
+}: ProjectPlaceholderProps) => {
 	const colors = accentColorMap[accent] ?? accentColorMap.cyan;
 	const gradId = `pp-sun-${accent}`;
 	return (
@@ -46,17 +43,82 @@ export const ProjectPlaceholder = ({ accent = "cyan" }: ProjectPlaceholderProps)
 			<rect fill="rgba(7,6,18,0.8)" height="2" width="52" x="174" y="106" />
 			<rect fill="rgba(7,6,18,0.8)" height="2" width="52" x="174" y="112" />
 			{/* Horizon */}
-			<line stroke="rgba(0,208,255,0.55)" strokeWidth="1" x1="0" x2="400" y1="88" y2="88" />
+			<line
+				stroke="rgba(0,208,255,0.55)"
+				strokeWidth="1"
+				x1="0"
+				x2="400"
+				y1="88"
+				y2="88"
+			/>
 			{/* Grid perspective lines */}
-			<line stroke={colors.grid} strokeWidth="0.8" x1="200" x2="0" y1="88" y2="160" />
-			<line stroke={colors.grid} strokeWidth="0.8" x1="200" x2="80" y1="88" y2="160" />
-			<line stroke={colors.grid} strokeWidth="0.8" x1="200" x2="150" y1="88" y2="160" />
-			<line stroke={colors.grid} strokeWidth="0.8" x1="200" x2="250" y1="88" y2="160" />
-			<line stroke={colors.grid} strokeWidth="0.8" x1="200" x2="320" y1="88" y2="160" />
-			<line stroke={colors.grid} strokeWidth="0.8" x1="200" x2="400" y1="88" y2="160" />
+			<line
+				stroke={colors.grid}
+				strokeWidth="0.8"
+				x1="200"
+				x2="0"
+				y1="88"
+				y2="160"
+			/>
+			<line
+				stroke={colors.grid}
+				strokeWidth="0.8"
+				x1="200"
+				x2="80"
+				y1="88"
+				y2="160"
+			/>
+			<line
+				stroke={colors.grid}
+				strokeWidth="0.8"
+				x1="200"
+				x2="150"
+				y1="88"
+				y2="160"
+			/>
+			<line
+				stroke={colors.grid}
+				strokeWidth="0.8"
+				x1="200"
+				x2="250"
+				y1="88"
+				y2="160"
+			/>
+			<line
+				stroke={colors.grid}
+				strokeWidth="0.8"
+				x1="200"
+				x2="320"
+				y1="88"
+				y2="160"
+			/>
+			<line
+				stroke={colors.grid}
+				strokeWidth="0.8"
+				x1="200"
+				x2="400"
+				y1="88"
+				y2="160"
+			/>
 			{/* Horizontal grid lines */}
-			<line opacity="0.6" stroke={colors.grid} strokeWidth="0.6" x1="48" x2="352" y1="118" y2="118" />
-			<line opacity="0.4" stroke={colors.grid} strokeWidth="0.6" x1="18" x2="382" y1="140" y2="140" />
+			<line
+				opacity="0.6"
+				stroke={colors.grid}
+				strokeWidth="0.6"
+				x1="48"
+				x2="352"
+				y1="118"
+				y2="118"
+			/>
+			<line
+				opacity="0.4"
+				stroke={colors.grid}
+				strokeWidth="0.6"
+				x1="18"
+				x2="382"
+				y1="140"
+				y2="140"
+			/>
 		</svg>
 	);
 };
