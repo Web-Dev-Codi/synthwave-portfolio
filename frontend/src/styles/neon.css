@@ -505,3 +505,28 @@
 		0 0 14px rgba(140, 30, 255, 0.4),
 		0 0 28px rgba(140, 30, 255, 0.2);
 }
+
+.synthwave-avatar-shell {
+	position: relative;
+	width: 100%;
+	aspect-ratio: 1;
+	border-radius: var(--radius-panel);
+	overflow: hidden;
+	border: 1px solid rgba(127, 119, 221, 0.45);
+	box-shadow: var(--shadow-purple);
+	animation: glow-pulse 3.5s ease-in-out infinite;
+}
+
+/* Subtle crosshatch grid texture for cards */
+.inner-grid-texture {
+	background-image:
+		linear-gradient(to right, rgba(140, 30, 255, 0.06) 1px, transparent 1px),
+		linear-gradient(to bottom, rgba(140, 30, 255, 0.06) 1px, transparent 1px);
+	background-size: 40px 40px;
+}
+.inner-grid-texture-subtle {
+	background-image:
+		linear-gradient(to right, rgba(140, 30, 255, 0.04) 1px, transparent 1px),
+		linear-gradient(to bottom, rgba(140, 30, 255, 0.04) 1px, transparent 1px);
+	background-size: 40px 40px;
+}
