@@ -1,8 +1,10 @@
 import { motion } from "framer-motion";
 import Button from "../../components/ui/Button/Button";
 import NeonBadge from "../../components/ui/NeonBadge/NeonBadge";
+import ProjectPlaceholder from "../../components/ui/ProjectPlaceholder";
 import { cardHoverAnimation } from "../../utils/animations";
 import { cn } from "../../utils/cn";
+import { getTechColor } from "../../utils/techColors";
 
 type ProjectCardProps = {
 	accent: "amber" | "cyan" | "pink" | "purple";
@@ -35,15 +37,11 @@ export const ProjectCard = ({
 		)}
 		whileHover={cardHoverAnimation}
 	>
-		<div className="mb-6 rounded-2xl border border-[rgba(255,255,255,0.06)] bg-[linear-gradient(135deg,rgba(19,15,38,0.92),rgba(26,23,64,0.72))] p-6">
-			<div className="flex aspect-video items-center justify-center rounded-xl border border-dashed border-[rgba(255,255,255,0.14)] bg-[rgba(8,7,18,0.4)] text-center">
-				<span className="pixel-heading text-[0.7rem] tracking-[0.24em] text-(--color-text-dim)">
-					Feature Preview
-				</span>
-			</div>
+		<div className="mb-6 overflow-hidden rounded-2xl">
+			<ProjectPlaceholder accent={accent} />
 		</div>
 
-		<div className="flex flex-1 flex-col gap-5">
+		<div className="flex flex-1 flex-col gap-5 inner-grid-texture-subtle rounded-b-3xl px-1">
 			<div>
 				<h3 className="pixel-heading chrome-text text-sm leading-7 sm:text-base">
 					{title}
@@ -57,7 +55,7 @@ export const ProjectCard = ({
 
 			<div className="flex flex-wrap gap-3">
 				{stack.map((item) => (
-					<NeonBadge key={item} accent={accent}>
+					<NeonBadge key={item} accent={getTechColor(item, accent)}>
 						{item}
 					</NeonBadge>
 				))}
