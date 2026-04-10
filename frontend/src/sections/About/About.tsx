@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import SectionHeading from "../../components/ui/SectionHeading";
+import SynthwaveAvatar from "../../components/ui/SynthwaveAvatar";
 import { profile } from "../../data/profile";
 import {
 	defaultViewport,
@@ -16,6 +17,13 @@ const accentClassMap = {
 	purple: "accent-purple",
 } as const;
 
+const accentTextClassMap = {
+	amber: "text-(--color-amber)",
+	cyan: "text-(--color-cyan)",
+	pink: "text-(--color-pink)",
+	purple: "text-(--color-purple)",
+} as const;
+
 export const About = () => (
 	<section className="section-shell" id="about">
 		<div className="section-inner space-y-8">
@@ -30,26 +38,13 @@ export const About = () => (
 			>
 				<div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
 					<motion.div
-						className="retro-panel neon-card floating-panel rounded-(--radius-panel) border border-(--color-border-soft) p-6 sm:p-8"
+						className="retro-panel neon-card floating-panel inner-grid-texture rounded-(--radius-panel) border border-(--color-border-soft) p-6 sm:p-8"
 						initial="hidden"
 						whileInView="visible"
 						viewport={defaultViewport}
 						variants={scaleUpVariants}
 					>
-						<div className="flex h-full flex-col items-center justify-center gap-6 rounded-[calc(var(--radius-panel)-0.5rem)] border border-[rgba(127,119,221,0.28)] bg-[rgba(26,23,64,0.7)] px-8 py-10 text-center">
-							<div className="flex h-24 w-24 items-center justify-center rounded-full border border-[rgba(127,119,221,0.45)] bg-[rgba(60,52,137,0.42)] text-3xl text-(--color-text-primary) shadow-(--shadow-purple)">
-								{profile.name.charAt(0)}
-							</div>
-							<div className="space-y-2">
-								<p className="pixel-heading text-xs tracking-[0.22em] text-(--color-purple)">
-									Pixel Avatar
-								</p>
-								<p className="muted-copy text-sm leading-7">
-									Crafting high-contrast interfaces with modern frontend tooling
-									and product-minded implementation.
-								</p>
-							</div>
-						</div>
+						<SynthwaveAvatar />
 					</motion.div>
 
 					<div className="space-y-8">
@@ -81,7 +76,12 @@ export const About = () => (
 									)}
 									variants={scaleUpVariants}
 								>
-									<p className="pixel-heading text-sm text-(--color-text-primary)">
+									<p
+										className={cn(
+											"pixel-heading text-sm",
+											accentTextClassMap[stat.accent],
+										)}
+									>
 										{stat.value}
 									</p>
 									<p className="mt-3 text-sm uppercase tracking-[0.22em] text-(--color-text-dim)">

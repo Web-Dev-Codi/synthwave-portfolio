@@ -215,7 +215,7 @@ button {
 		transparent 100%
 	);
 	content: "";
-	opacity: 0.4;
+	opacity: 0.15;
 }
 
 .section-inner {
@@ -226,6 +226,11 @@ button {
 .section-panel {
 	position: relative;
 	z-index: 1;
+}
+
+/* Hero: override section-shell padding so it fills exactly 100svh */
+#hero {
+	padding-block: 0;
 }
 
 .section-heading {

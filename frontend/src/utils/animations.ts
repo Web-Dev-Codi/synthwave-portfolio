@@ -94,12 +94,11 @@ export const glitchVariants: Variants = {
 
 // Hero content stagger animation
 export const heroStaggerVariants: Variants = {
-	hidden: { opacity: 0 },
+	hidden: {},
 	visible: {
-		opacity: 1,
 		transition: {
-			staggerChildren: 0.15,
-			delayChildren: 0.2,
+			staggerChildren: 0,
+			delayChildren: 0,
 		},
 	},
 };
@@ -116,6 +115,47 @@ export const heroItemVariants: Variants = {
 			duration: 0.5,
 			ease: [0.25, 0.46, 0.45, 0.94],
 		},
+	},
+};
+
+// Name (h1) — first in, dramatic rise with blur
+export const heroNameVariants: Variants = {
+	hidden: { opacity: 0, y: 40, filter: "blur(4px)" },
+	visible: {
+		opacity: 1,
+		y: 0,
+		filter: "blur(0px)",
+		transition: { delay: 0.3, duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] },
+	},
+};
+
+// Title / role — delayed after name
+export const heroRoleVariants: Variants = {
+	hidden: { opacity: 0, y: 20 },
+	visible: {
+		opacity: 1,
+		y: 0,
+		transition: { delay: 0.75, duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] },
+	},
+};
+
+// Summary copy
+export const heroSummaryVariants: Variants = {
+	hidden: { opacity: 0, y: 16 },
+	visible: {
+		opacity: 1,
+		y: 0,
+		transition: { delay: 1.0, duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] },
+	},
+};
+
+// CTA buttons — last in
+export const heroCtaVariants: Variants = {
+	hidden: { opacity: 0, y: 12 },
+	visible: {
+		opacity: 1,
+		y: 0,
+		transition: { delay: 1.2, duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] },
 	},
 };
 

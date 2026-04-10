@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import SectionHeading from "../../components/ui/SectionHeading";
 import { experiences } from "../../data/experience";
+import { useScrollAnimation } from "../../hooks/useScrollAnimation";
 import {
 	cardHoverAnimation,
 	defaultViewport,
@@ -25,7 +26,17 @@ const accentDotClassMap = {
 	purple: "bg-[var(--color-purple)] shadow-[var(--shadow-purple)]",
 } as const;
 
+const accentNodePulseClassMap = {
+	amber: "timeline-node-pulse-amber",
+	cyan: "timeline-node-pulse-cyan",
+	pink: "timeline-node-pulse-pink",
+	purple: "timeline-node-pulse-purple",
+} as const;
+
 export const Experience = () => {
+	const { ref: timelineRef, isVisible: timelineVisible } =
+		useScrollAnimation<HTMLDivElement>({ threshold: 0.08 });
+
 	return (
 		<section className="section-shell" id="experience">
 			<div className="section-inner space-y-8">
@@ -43,27 +54,28 @@ export const Experience = () => {
 					variants={fadeUpVariants}
 				>
 					<motion.div
+						ref={timelineRef}
 						className="relative grid gap-6 md:gap-8"
 						initial="hidden"
-						whileInView="visible"
-						viewport={defaultViewport}
 						variants={staggerContainerVariants}
+						viewport={defaultViewport}
+						whileInView="visible"
 					>
 						<span
 							aria-hidden="true"
-							className="timeline-track timeline-track-visible"
+							className={cn(
+								"timeline-track",
+								timelineVisible && "timeline-track-visible",
+							)}
 						/>
 
 						{experiences.map((experience, index) => (
 							<motion.article
 								key={`${experience.company}-${experience.period}`}
 								className={cn(
-									"timeline-entry retro-panel neon-card relative ml-10 rounded-3xl border p-6 md:ml-0 md:w-[calc(50%-2rem)]",
+									"retro-panel neon-card relative ml-10 rounded-3xl border p-6 md:ml-0 md:w-[calc(50%-2rem)]",
 									accentClassMap[experience.accent],
-									index % 2 === 0
-										? "timeline-entry-left md:mr-auto"
-										: "timeline-entry-right md:ml-auto",
-									"timeline-entry-visible",
+									index % 2 === 0 ? "md:mr-auto" : "md:ml-auto",
 								)}
 								variants={
 									index % 2 === 0 ? slideInLeftVariants : slideInRightVariants
@@ -75,6 +87,7 @@ export const Experience = () => {
 									className={cn(
 										"absolute -left-[2.6rem] top-8 h-4 w-4 rounded-full border-2 border-[rgba(255,255,255,0.3)] md:left-auto",
 										accentDotClassMap[experience.accent],
+										accentNodePulseClassMap[experience.accent],
 										index % 2 === 0
 											? "md:-right-[2.6rem]"
 											: "md:-left-[2.6rem] md:right-auto",
@@ -84,10 +97,10 @@ export const Experience = () => {
 								<p className="pixel-heading text-[0.62rem] tracking-[0.26em] text-(--color-text-dim)">
 									{experience.period}
 								</p>
-								<h3 className="mt-4 text-xl text-(--color-text-primary)">
+								<h3 className="mt-4 text-xl neon-text-cyan">
 									{experience.role}
 								</h3>
-								<p className="mt-1 text-sm uppercase tracking-[0.22em] text-(--color-text-muted)">
+								<p className="pixel-heading mt-1 chrome-text text-[0.58rem] tracking-[0.18em]">
 									{experience.company}
 								</p>
 
