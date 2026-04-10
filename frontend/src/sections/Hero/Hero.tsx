@@ -37,7 +37,7 @@ export const Hero = () => {
 
 	return (
 		<section ref={ref} className="section-shell overflow-hidden" id="hero">
-			<div className="section-inner relative flex min-h-svh items-center justify-center pb-8 pt-[var(--navbar-height)]">
+			<div className="section-inner relative flex min-h-svh items-center justify-center pb-8 pt-(--navbar-height)">
 				<div aria-hidden="true" className="orb-glow hero-orb-left" />
 				<div aria-hidden="true" className="orb-glow hero-orb-right" />
 

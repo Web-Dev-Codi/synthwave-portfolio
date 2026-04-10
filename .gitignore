@@ -55,6 +55,9 @@ web_modules/
 # Optional npm cache directory
 .npm
 
+# Documentation
+docs/plans/
+
 # Optional eslint cache
 .eslintcache
 

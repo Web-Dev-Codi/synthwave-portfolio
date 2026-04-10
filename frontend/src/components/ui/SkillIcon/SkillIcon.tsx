@@ -1,8 +1,17 @@
 import { motion } from "framer-motion";
 import type { SkillIconProps } from "./SkillIcon.types";
-import { hexToRgba, prefersReducedMotion, defaultSkillSize } from "./SkillIcon.types";
+import {
+	defaultSkillSize,
+	hexToRgba,
+	prefersReducedMotion,
+} from "./SkillIcon.types";
 
-export const SkillIcon = ({ icon: Icon, name, color, size = defaultSkillSize }: SkillIconProps) => {
+export const SkillIcon = ({
+	icon: Icon,
+	name,
+	color,
+	size = defaultSkillSize,
+}: SkillIconProps) => {
 	const rgba50 = hexToRgba(color, 0.5);
 	const rgba25 = hexToRgba(color, 0.25);
 	const rgba38 = hexToRgba(color, 0.38);
@@ -25,7 +34,7 @@ export const SkillIcon = ({ icon: Icon, name, color, size = defaultSkillSize }: 
 
 	return (
 		<motion.div
-			className="flex flex-col items-center gap-2"
+			className="rounded-xl bg-[#100E24] p-3 flex flex-col items-center gap-2 cursor-pointer"
 			whileHover={
 				reducedMotion
 					? {}
@@ -33,11 +42,10 @@ export const SkillIcon = ({ icon: Icon, name, color, size = defaultSkillSize }: 
 							filter: `drop-shadow(0 0 8px ${color}) drop-shadow(0 0 16px ${rgba60})`,
 							boxShadow: `0 0 16px ${rgba60}, inset 0 0 12px ${rgba20}`,
 							y: -4,
-					  }
+						}
 			}
 			transition={{ duration: 0.2 }}
 			style={cardStyles}
-			className="rounded-xl bg-[#100E24] p-3 flex flex-col items-center gap-2 cursor-pointer"
 		>
 			<div style={baseStyles}>
 				<Icon size={size} />
