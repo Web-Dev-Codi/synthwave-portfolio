@@ -1,13 +1,13 @@
 import { cn } from "../../../utils/cn";
-import type { NeonBadgeProps } from "./NeonBadge.types";
+import type { NeonBadgeAccent, NeonBadgeProps } from "./NeonBadge.types";
 
-const accentClassMap = {
+const accentClassMap: Record<NeonBadgeAccent, string> = {
 	amber:
-		"border-[rgba(240,153,123,0.5)] bg-[rgba(74,21,40,0.2)] text-[var(--color-amber)]",
-	cyan: "border-[rgba(93,202,165,0.5)] bg-[rgba(8,80,65,0.18)] text-[var(--color-cyan)]",
-	pink: "border-[rgba(212,83,126,0.5)] bg-[rgba(74,21,40,0.2)] text-[var(--color-pink)]",
+		"border-[rgba(240,153,123,0.6)] bg-[rgba(240,153,123,0.12)] text-[var(--color-amber)] shadow-[var(--shadow-amber)]",
+	cyan: "border-[rgba(93,202,165,0.6)] bg-[rgba(93,202,165,0.12)] text-[var(--color-cyan)] shadow-[var(--shadow-cyan)]",
+	pink: "border-[rgba(212,83,126,0.6)] bg-[rgba(212,83,126,0.12)] text-[var(--color-pink)] shadow-[var(--shadow-pink)]",
 	purple:
-		"border-[rgba(127,119,221,0.5)] bg-[rgba(38,33,92,0.28)] text-[var(--color-purple)]",
+		"border-[rgba(127,119,221,0.6)] bg-[rgba(127,119,221,0.12)] text-[var(--color-purple)] shadow-[var(--shadow-purple)]",
 } as const;
 
 export const NeonBadge = ({

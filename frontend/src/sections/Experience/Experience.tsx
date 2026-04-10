@@ -3,6 +3,11 @@ import SectionHeading from "../../components/ui/SectionHeading";
 import { experiences } from "../../data/experience";
 import { useScrollAnimation } from "../../hooks/useScrollAnimation";
 import {
+	accentClassMap,
+	accentDotClassMap,
+	accentNodePulseClassMap,
+} from "../../utils/accentMaps";
+import {
 	cardHoverAnimation,
 	defaultViewport,
 	fadeUpVariants,
@@ -11,27 +16,6 @@ import {
 	staggerContainerVariants,
 } from "../../utils/animations";
 import { cn } from "../../utils/cn";
-
-const accentClassMap = {
-	amber: "accent-amber",
-	cyan: "accent-cyan",
-	pink: "accent-pink",
-	purple: "accent-purple",
-} as const;
-
-const accentDotClassMap = {
-	amber: "bg-[var(--color-amber)] shadow-[var(--shadow-amber)]",
-	cyan: "bg-[var(--color-cyan)] shadow-[var(--shadow-cyan)]",
-	pink: "bg-[var(--color-pink)] shadow-[var(--shadow-pink)]",
-	purple: "bg-[var(--color-purple)] shadow-[var(--shadow-purple)]",
-} as const;
-
-const accentNodePulseClassMap = {
-	amber: "timeline-node-pulse-amber",
-	cyan: "timeline-node-pulse-cyan",
-	pink: "timeline-node-pulse-pink",
-	purple: "timeline-node-pulse-purple",
-} as const;
 
 export const Experience = () => {
 	const { ref: timelineRef, isVisible: timelineVisible } =

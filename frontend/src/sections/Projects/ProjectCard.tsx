@@ -2,25 +2,11 @@ import { motion } from "framer-motion";
 import Button from "../../components/ui/Button/Button";
 import NeonBadge from "../../components/ui/NeonBadge/NeonBadge";
 import ProjectPlaceholder from "../../components/ui/ProjectPlaceholder";
+import { accentClassMap } from "../../utils/accentMaps";
 import { cardHoverAnimation } from "../../utils/animations";
 import { cn } from "../../utils/cn";
 import { getTechColor } from "../../utils/techColors";
-
-type ProjectCardProps = {
-	accent: "amber" | "cyan" | "pink" | "purple";
-	description: string;
-	githubUrl: string;
-	liveUrl: string;
-	stack: readonly string[];
-	title: string;
-};
-
-const accentClassMap = {
-	amber: "accent-amber",
-	cyan: "accent-cyan",
-	pink: "accent-pink",
-	purple: "accent-purple",
-} as const;
+import type { ProjectCardProps } from "./ProjectCard.types";
 
 export const ProjectCard = ({
 	accent,

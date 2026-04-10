@@ -1,9 +1,6 @@
 import { useEffect, useRef } from "react";
 import { usePrefersReducedMotion } from "../hooks/useScrollAnimation";
-
-type VHSNoiseCanvasProps = {
-	className?: string;
-};
+import type { VHSNoiseCanvasProps } from "./VHSNoiseCanvas.types";
 
 const VHSNoiseCanvas = ({ className }: VHSNoiseCanvasProps) => {
 	const canvasRef = useRef<HTMLCanvasElement | null>(null);

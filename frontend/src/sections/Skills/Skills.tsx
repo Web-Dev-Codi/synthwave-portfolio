@@ -1,12 +1,13 @@
 import { motion } from "framer-motion";
 import SectionHeading from "../../components/ui/SectionHeading";
-import { hexToRgba, SkillIcon } from "../../components/ui/SkillIcon";
+import SkillIcon from "../../components/ui/SkillIcon/SkillIcon";
 import { skillCategories } from "../../data/skills";
 import {
 	defaultViewport,
 	fadeUpVariants,
 	staggerContainerVariants,
 } from "../../utils/animations";
+import { hexToRgba } from "../../utils/colorUtils";
 
 export const Skills = () => {
 	return (

@@ -1,30 +1,22 @@
 import { Mail } from "lucide-react";
-import type { ComponentType } from "react";
 import { SiGithub } from "react-icons/si";
 import { profile } from "../../../data/profile";
 import { cn } from "../../../utils/cn";
-
-type AccentColor = "cyan" | "purple";
-
-type SocialConfig = {
-	accent: AccentColor;
-	icon: ComponentType<{ size?: number }>;
-};
+import type {
+	SocialAccentColor,
+	SocialConfig,
+	SocialLinksProps,
+} from "./SocialLinks.types";
 
 const socialConfigMap: Record<string, SocialConfig> = {
 	Email: { accent: "cyan", icon: Mail },
 	GitHub: { accent: "purple", icon: SiGithub },
 };
 
-const accentClassMap: Record<AccentColor, string> = {
+const accentClassMap: Record<SocialAccentColor, string> = {
 	cyan: "border-[rgba(0,208,255,0.6)] text-(--color-cyan) shadow-(--shadow-cyan) hover:border-(--color-cyan) hover:shadow-(--shadow-cyan-hover)",
 	purple:
 		"border-[rgba(127,119,221,0.6)] text-(--color-purple) shadow-(--shadow-purple) hover:border-(--color-purple) hover:shadow-(--shadow-purple-hover)",
-};
-
-type SocialLinksProps = {
-	className?: string;
-	iconSize?: number;
 };
 
 export const SocialLinks = ({ className, iconSize = 18 }: SocialLinksProps) => (
@@ -43,9 +35,7 @@ export const SocialLinks = ({ className, iconSize = 18 }: SocialLinksProps) => (
 						accentClassMap[accent],
 					)}
 					href={link.href}
-					rel={
-						link.href.startsWith("http") ? "noreferrer" : undefined
-					}
+					rel={link.href.startsWith("http") ? "noreferrer" : undefined}
 					target={link.href.startsWith("http") ? "_blank" : undefined}
 				>
 					<Icon size={iconSize} />

@@ -7,12 +7,7 @@ import type {
 } from "../../../../shared/types/contact.types";
 import { contactSchema } from "../../../../shared/types/contact.types";
 import Button from "../../components/ui/Button/Button";
-
-type SubmissionState = {
-	message: string;
-	tone: "amber" | "cyan" | "pink" | "purple";
-	type: "error" | "idle" | "submitting" | "success";
-};
+import type { SubmissionState } from "./ContactForm.types";
 
 const apiBaseUrl =
 	import.meta.env.VITE_API_BASE_URL?.trim() || "http://localhost:3001";
