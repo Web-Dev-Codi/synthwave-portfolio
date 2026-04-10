@@ -4,6 +4,8 @@ import { profile } from "../../../data/profile";
 import { cn } from "../../../utils/cn";
 import type { NavbarItem } from "./Navbar.types";
 
+const MOBILE_BREAKPOINT = 1000;
+
 const navbarItems: NavbarItem[] = [
 	{ href: "#about", label: "About" },
 	{ href: "#skills", label: "Skills" },
@@ -48,10 +50,14 @@ export const Navbar = () => {
 	const [hasScrolled, setHasScrolled] = useState(false);
 	const [activeSection, setActiveSection] = useState("about");
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+	const [isMobile, setIsMobile] = useState(
+		window.innerWidth <= MOBILE_BREAKPOINT,
+	);
 
 	useEffect(() => {
 		const handleViewportChange = () => {
 			setHasScrolled(window.scrollY > 20);
+			setIsMobile(window.innerWidth <= MOBILE_BREAKPOINT);
 
 			const nextActiveSection = navbarItems
 				.map((item) => document.querySelector(item.href))
@@ -118,56 +124,57 @@ export const Navbar = () => {
 						{profile.siteLabel}
 					</a>
 
-					<nav
-						aria-label="Primary"
-						className="site-navbar-links hidden min-[700px]:flex"
-					>
-						{navbarItems.map((item) => (
-							<a
-								key={item.href}
-								aria-label={`Jump to the ${item.label} section`}
-								className={cn(
-									"site-nav-link",
-									item.tone === "primary"
-										? "site-nav-link-primary"
-										: "site-nav-link-secondary",
-									activeSection === item.href &&
-										item.tone !== "primary" &&
-										"site-nav-link-active",
-								)}
-								href={item.href}
-							>
-								{item.label}
-							</a>
-						))}
-					</nav>
+					{!isMobile && (
+						<nav aria-label="Primary" className="site-navbar-links flex">
+							{navbarItems.map((item) => (
+								<a
+									key={item.href}
+									aria-label={`Jump to the ${item.label} section`}
+									className={cn(
+										"site-nav-link",
+										item.tone === "primary"
+											? "site-nav-link-primary"
+											: "site-nav-link-secondary",
+										activeSection === item.href &&
+											item.tone !== "primary" &&
+											"site-nav-link-active",
+									)}
+									href={item.href}
+								>
+									{item.label}
+								</a>
+							))}
+						</nav>
+					)}
 
-					<button
-						aria-label="Toggle mobile menu"
-						aria-expanded={isMobileMenuOpen}
-						className="hidden max-[699px]:flex hamburger-button"
-						onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-						type="button"
-					>
-						<span
-							className={cn(
-								"hamburger-line",
-								isMobileMenuOpen && "hamburger-line-open",
-							)}
-						/>
-						<span
-							className={cn(
-								"hamburger-line",
-								isMobileMenuOpen && "hamburger-line-open",
-							)}
-						/>
-						<span
-							className={cn(
-								"hamburger-line",
-								isMobileMenuOpen && "hamburger-line-open",
-							)}
-						/>
-					</button>
+					{isMobile && (
+						<button
+							aria-label="Toggle mobile menu"
+							aria-expanded={isMobileMenuOpen}
+							className="hamburger-button"
+							onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+							type="button"
+						>
+							<span
+								className={cn(
+									"hamburger-line",
+									isMobileMenuOpen && "hamburger-line-open",
+								)}
+							/>
+							<span
+								className={cn(
+									"hamburger-line",
+									isMobileMenuOpen && "hamburger-line-open",
+								)}
+							/>
+							<span
+								className={cn(
+									"hamburger-line",
+									isMobileMenuOpen && "hamburger-line-open",
+								)}
+							/>
+						</button>
+					)}
 				</div>
 			</header>
 
