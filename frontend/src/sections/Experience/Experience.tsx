@@ -1,15 +1,15 @@
 import { motion } from "framer-motion";
 import SectionHeading from "../../components/ui/SectionHeading";
 import { experiences } from "../../data/experience";
-import { cn } from "../../utils/cn";
 import {
+	cardHoverAnimation,
+	defaultViewport,
 	fadeUpVariants,
 	slideInLeftVariants,
 	slideInRightVariants,
 	staggerContainerVariants,
-	defaultViewport,
-	cardHoverAnimation,
 } from "../../utils/animations";
+import { cn } from "../../utils/cn";
 
 const accentClassMap = {
 	amber: "accent-amber",
@@ -58,7 +58,7 @@ export const Experience = () => {
 							<motion.article
 								key={`${experience.company}-${experience.period}`}
 								className={cn(
-									"timeline-entry retro-panel neon-card relative ml-10 rounded-3xl border p-6 md:ml-0 md:w-[calc(50%-1.5rem)]",
+									"timeline-entry retro-panel neon-card relative ml-10 rounded-3xl border p-6 md:ml-0 md:w-[calc(50%-2rem)]",
 									accentClassMap[experience.accent],
 									index % 2 === 0
 										? "timeline-entry-left md:mr-auto"
@@ -73,11 +73,11 @@ export const Experience = () => {
 								<span
 									aria-hidden="true"
 									className={cn(
-										"absolute -left-8 top-8 h-4 w-4 rounded-full border border-[rgba(255,255,255,0.18)] md:left-auto md:-right-9",
+										"absolute -left-[2.6rem] top-8 h-4 w-4 rounded-full border-2 border-[rgba(255,255,255,0.3)] md:left-auto",
 										accentDotClassMap[experience.accent],
 										index % 2 === 0
-											? "md:-right-9"
-											: "md:-left-9 md:right-auto",
+											? "md:-right-[2.6rem]"
+											: "md:-left-[2.6rem] md:right-auto",
 									)}
 								/>
 

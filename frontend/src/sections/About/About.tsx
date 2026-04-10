@@ -1,13 +1,13 @@
 import { motion } from "framer-motion";
 import SectionHeading from "../../components/ui/SectionHeading";
 import { profile } from "../../data/profile";
-import { cn } from "../../utils/cn";
 import {
+	defaultViewport,
 	fadeUpVariants,
 	scaleUpVariants,
 	staggerContainerVariants,
-	defaultViewport,
 } from "../../utils/animations";
+import { cn } from "../../utils/cn";
 
 const accentClassMap = {
 	amber: "accent-amber",

@@ -1,17 +1,17 @@
 export const profile = {
 	availability: "Open to work",
-	email: "hello@brian.dev",
+	email: "cordiscobrian@gmail.com",
 	location: "Berlin",
 	name: "Brian Cordisco",
 	role: "Full Stack Developer",
-	siteLabel: "BRIAN.DEV",
+	siteLabel: "Web Dev Codi",
 	socialLinks: [
 		{
 			href: "https://github.com/Web-Dev-Codi",
 			label: "GitHub",
 		},
 		{
-			href: "mailto:hello@brian.dev",
+			href: "mailto:cordiscobrian@gmail.com",
 			label: "Email",
 		},
 	],

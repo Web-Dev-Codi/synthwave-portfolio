@@ -3,11 +3,11 @@ import type { ButtonAsAnchorProps, ButtonProps } from "./Button.types";
 
 const accentClassMap = {
 	amber:
-		"border-[rgba(240,153,123,0.6)] text-[var(--color-amber)] shadow-[var(--shadow-amber)] hover:bg-[rgba(240,153,123,0.1)]",
-	cyan: "border-[rgba(93,202,165,0.6)] text-[var(--color-cyan)] shadow-[var(--shadow-cyan)] hover:bg-[rgba(93,202,165,0.1)]",
-	pink: "border-[rgba(212,83,126,0.6)] text-[var(--color-pink)] shadow-[var(--shadow-pink)] hover:bg-[rgba(212,83,126,0.1)]",
+		"border-[rgba(240,153,123,0.6)] text-[var(--color-amber)] shadow-[var(--shadow-amber)] hover:border-[var(--color-amber)] hover:text-[var(--color-amber)] hover:bg-[rgba(240,153,123,0.1)]",
+	cyan: "border-[rgba(93,202,165,0.6)] text-[var(--color-cyan)] shadow-[var(--shadow-cyan)] hover:border-[var(--color-cyan)] hover:text-[var(--color-cyan)] hover:bg-[rgba(93,202,165,0.1)]",
+	pink: "border-[rgba(212,83,126,0.6)] text-[var(--color-pink)] shadow-[var(--shadow-pink)] hover:border-[var(--color-pink)] hover:text-[var(--color-pink)] hover:bg-[rgba(212,83,126,0.1)] hover:shadow-[var(--shadow-pink-hover)]",
 	purple:
-		"border-[rgba(127,119,221,0.6)] text-[var(--color-purple)] shadow-[var(--shadow-purple)] hover:bg-[rgba(127,119,221,0.1)]",
+		"border-[rgba(127,119,221,0.6)] text-[var(--color-purple)] shadow-[var(--shadow-purple)] hover:border-[var(--color-purple)] hover:text-[var(--color-purple)] hover:bg-[rgba(127,119,221,0.1)]",
 } as const;
 
 const sizeClassMap = {

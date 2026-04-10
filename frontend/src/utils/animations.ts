@@ -1,4 +1,4 @@
-import type { Variants } from "framer-motion";
+import type { TargetAndTransition, Variants } from "framer-motion";
 
 // Fade up animation for scroll reveals
 export const fadeUpVariants: Variants = {
@@ -120,7 +120,7 @@ export const heroItemVariants: Variants = {
 };
 
 // Card hover animation (for Framer Motion whileHover)
-export const cardHoverAnimation = {
+export const cardHoverAnimation: TargetAndTransition = {
 	y: -8,
 	scale: 1.02,
 	transition: {
