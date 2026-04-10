@@ -1,8 +1,8 @@
-import type { ReactNode } from "react";
+import type { ComponentType } from "react";
 
 export type SkillIconProps = {
 	color: string;
-	icon: ReactNode;
+	icon: ComponentType<{ size?: number }>;
 	name: string;
 	size?: number;
 };

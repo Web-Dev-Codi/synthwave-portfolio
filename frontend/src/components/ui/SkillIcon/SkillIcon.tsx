@@ -1,10 +1,7 @@
 import { motion } from "framer-motion";
+import { hexToRgba } from "../../../utils/colorUtils";
 import type { SkillIconProps } from "./SkillIcon.types";
-import {
-	defaultSkillSize,
-	hexToRgba,
-	prefersReducedMotion,
-} from "./SkillIcon.types";
+import { defaultSkillSize, prefersReducedMotion } from "./SkillIcon.types";
 
 export const SkillIcon = ({
 	icon: Icon,
