@@ -460,7 +460,6 @@
 	);
 	opacity: 0.85;
 	transform: perspective(760px) rotateX(75deg);
-	transform-origin: bottom;
 }
 
 /* Sun pulse animation */

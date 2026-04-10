@@ -1,2 +1,1 @@
-export { default } from "./SynthGridCanvas";
-export { default as SynthGrid } from "./SynthGridCanvas";
+export { default, default as SynthGrid } from "./SynthGridCanvas";
