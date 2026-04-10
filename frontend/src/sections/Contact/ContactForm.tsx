@@ -125,7 +125,10 @@ export const ContactForm = () => {
 			>
 				{isSubmitting ? "Sending Message…" : "Send Message"}
 			</Button>
-			<p className="min-h-6 text-sm text-(--color-text-muted)" role="status">
+			<p
+				className="min-h-6 text-sm text-(--color-text-muted)"
+				aria-live="polite"
+			>
 				{submissionState.message}
 			</p>
 		</form>

@@ -1,11 +1,11 @@
-import type { ElementType } from "react";
+import type { ElementType, ReactNode } from "react";
 import type { AccentColor } from "../../../types/common";
 
 export type GlitchTone = "chrome" | AccentColor;
 
 export type GlitchTextProps = {
 	as?: ElementType;
-	children: string;
+	children: ReactNode;
 	className?: string;
 	isActive?: boolean;
 	tone?: GlitchTone;

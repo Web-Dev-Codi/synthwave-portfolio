@@ -35,15 +35,79 @@ export const Hero = () => {
 		projectsSection.scrollIntoView({ behavior: "smooth", block: "start" });
 	};
 
+	const handleScrollToContact = () => {
+		const contactSection = document.getElementById("contact");
+
+		if (!contactSection) {
+			return;
+		}
+
+		contactSection.scrollIntoView({ behavior: "smooth", block: "start" });
+	};
+
 	return (
 		<section ref={ref} className="section-shell overflow-hidden" id="hero">
-			<div className="section-inner relative flex min-h-svh items-center justify-center pb-8 pt-(--navbar-height)">
+			<div className="section-inner relative flex flex-col min-h-dvh">
 				<div aria-hidden="true" className="orb-glow hero-orb-left" />
 				<div aria-hidden="true" className="orb-glow hero-orb-right" />
 
 				<motion.div
+					className="relative z-10 flex flex-col items-center gap-6 text-center pt-20 pb-8"
+					initial="hidden"
+					animate="visible"
+					variants={heroStaggerVariants}
+				>
+					<motion.div variants={heroNameVariants}>
+						<GlitchText
+							as="h1"
+							className="text-4xl leading-[1.4] sm:text-6xl lg:text-7xl"
+							isActive={true}
+							tone="chrome"
+						>
+							Brian
+							<br />
+							Cordisco
+						</GlitchText>
+					</motion.div>
+
+					<motion.p
+						className="pixel-heading neon-text-cyan text-[0.72rem] tracking-[0.34em] sm:text-sm"
+						variants={heroRoleVariants}
+					>
+						{profile.role}
+						<span aria-hidden="true" className="cursor-block" />
+					</motion.p>
+
+					<motion.p
+						className="muted-copy max-w-2xl text-base leading-8 sm:text-lg"
+						variants={heroSummaryVariants}
+					>
+						{profile.summary[0]} {profile.summary[1]}
+					</motion.p>
+
+					<motion.div
+						className="flex flex-col gap-3 sm:flex-row"
+						variants={heroCtaVariants}
+					>
+						<Button
+							aria-label="Scroll to the projects section"
+							onClick={handleScrollToProjects}
+						>
+							View My Work
+						</Button>
+						<Button
+							accent="cyan"
+							aria-label="Contact Brian"
+							onClick={handleScrollToContact}
+						>
+							Start a Conversation
+						</Button>
+					</motion.div>
+				</motion.div>
+
+				<motion.div
 					aria-hidden="true"
-					className="hero-scene-shell"
+					className="hero-scene-shell flex-1"
 					style={{ clipPath: `inset(${sceneInset}% 0 0 0)` }}
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
@@ -111,58 +175,6 @@ export const Hero = () => {
 						<SynthGrid revealProgress={sceneReveal} />
 					</div>
 					<VHSNoiseCanvas />
-				</motion.div>
-
-				<motion.div
-					className="relative z-10 flex max-w-4xl flex-col items-center gap-6 text-center"
-					initial="hidden"
-					animate="visible"
-					variants={heroStaggerVariants}
-				>
-					<motion.div variants={heroNameVariants}>
-						<GlitchText
-							as="h1"
-							className="text-4xl leading-[1.4] sm:text-6xl lg:text-7xl"
-							isActive={progress > 0.015}
-							tone="chrome"
-						>
-							{profile.name}
-						</GlitchText>
-					</motion.div>
-
-					<motion.p
-						className="pixel-heading neon-text-cyan text-[0.72rem] tracking-[0.34em] sm:text-sm"
-						variants={heroRoleVariants}
-					>
-						{profile.role}
-						<span aria-hidden="true" className="cursor-block" />
-					</motion.p>
-
-					<motion.p
-						className="muted-copy max-w-2xl text-base leading-8 sm:text-lg"
-						variants={heroSummaryVariants}
-					>
-						{profile.summary[0]} {profile.summary[1]}
-					</motion.p>
-
-					<motion.div
-						className="flex flex-col gap-3 sm:flex-row"
-						variants={heroCtaVariants}
-					>
-						<Button
-							aria-label="Scroll to the projects section"
-							onClick={handleScrollToProjects}
-						>
-							View My Work
-						</Button>
-						<Button
-							accent="cyan"
-							aria-label="Send Brian an email"
-							href={`mailto:${profile.email}`}
-						>
-							Start a Conversation
-						</Button>
-					</motion.div>
 				</motion.div>
 			</div>
 		</section>
