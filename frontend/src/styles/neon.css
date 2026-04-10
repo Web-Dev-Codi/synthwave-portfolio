@@ -457,3 +457,36 @@
 		filter: brightness(1.08);
 	}
 }
+
+.neon-divider {
+	height: 1px;
+	width: 100%;
+	position: relative;
+	z-index: 2;
+}
+.neon-divider-pink {
+	background: linear-gradient(
+		90deg,
+		transparent 0%,
+		rgba(255, 41, 117, 0.9) 20%,
+		rgba(255, 41, 117, 0.9) 80%,
+		transparent 100%
+	);
+	box-shadow:
+		0 0 6px rgba(255, 41, 117, 0.7),
+		0 0 14px rgba(255, 41, 117, 0.4),
+		0 0 28px rgba(255, 41, 117, 0.2);
+}
+.neon-divider-purple {
+	background: linear-gradient(
+		90deg,
+		transparent 0%,
+		rgba(140, 30, 255, 0.9) 20%,
+		rgba(140, 30, 255, 0.9) 80%,
+		transparent 100%
+	);
+	box-shadow:
+		0 0 6px rgba(140, 30, 255, 0.7),
+		0 0 14px rgba(140, 30, 255, 0.4),
+		0 0 28px rgba(140, 30, 255, 0.2);
+}
