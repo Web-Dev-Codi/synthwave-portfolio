@@ -1,6 +1,7 @@
 import type { ElementType } from "react";
+import type { AccentColor } from "../../../types/common";
 
-export type GlitchTone = "chrome" | "cyan" | "pink" | "purple";
+export type GlitchTone = "chrome" | AccentColor;
 
 export type GlitchTextProps = {
 	as?: ElementType;

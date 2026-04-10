@@ -1,17 +1,10 @@
-import type { IconType } from "react-icons";
+import type { ReactNode } from "react";
 
-export interface SkillIconProps {
-	icon: IconType;
-	name: string;
+export type SkillIconProps = {
 	color: string;
+	icon: ReactNode;
+	name: string;
 	size?: number;
-}
-
-export const hexToRgba = (hex: string, alpha: number): string => {
-	const r = Number.parseInt(hex.slice(1, 3), 16);
-	const g = Number.parseInt(hex.slice(3, 5), 16);
-	const b = Number.parseInt(hex.slice(5, 7), 16);
-	return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 };
 
 export const prefersReducedMotion = (): boolean => {
@@ -19,4 +12,4 @@ export const prefersReducedMotion = (): boolean => {
 	return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 };
 
-export const defaultSkillSize = 32;
+export const defaultSkillSize = 64;
