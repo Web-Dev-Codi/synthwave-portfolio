@@ -46,7 +46,11 @@ const linkVariants = {
 	}),
 };
 
-export const Navbar = () => {
+interface NavbarProps {
+	isVisible?: boolean;
+}
+
+export const Navbar = ({ isVisible = true }: NavbarProps) => {
 	const [hasScrolled, setHasScrolled] = useState(false);
 	const [activeSection, setActiveSection] = useState("about");
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -106,6 +110,10 @@ export const Navbar = () => {
 			element.scrollIntoView({ behavior: "smooth" });
 		}
 	};
+
+	if (!isVisible) {
+		return null;
+	}
 
 	return (
 		<>

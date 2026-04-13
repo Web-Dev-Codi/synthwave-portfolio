@@ -1,183 +1,64 @@
-import { motion } from "framer-motion";
-import SynthGrid from "../../canvas/SynthGrid";
-import VHSNoiseCanvas from "../../canvas/VHSNoiseCanvas";
-import Button from "../../components/ui/Button/Button";
-import GlitchText from "../../components/ui/GlitchText/GlitchText";
-import { profile } from "../../data/profile";
-import { useScrollProgress } from "../../hooks/useScrollAnimation";
-import {
-	heroCtaVariants,
-	heroNameVariants,
-	heroRoleVariants,
-	heroStaggerVariants,
-	heroSummaryVariants,
-} from "../../utils/animations";
+import { useCallback, useState } from "react";
+import { useHeroAnimation } from "../../hooks/useHeroAnimation";
+import { LoadingScreen } from "./LoadingScreen";
+import { ScrollIndicator } from "./ScrollIndicator";
+import type { HeroPhase } from "./types";
 
-export const Hero = () => {
-	const { progress, ref } = useScrollProgress<HTMLElement>({
-		endOffset: 0.92,
-		startOffset: 0.04,
+interface HeroProps {
+	onComplete?: () => void;
+}
+
+export const Hero = ({ onComplete }: HeroProps) => {
+	const [phase, setPhase] = useState<HeroPhase>("loading");
+	const [showScrollIndicator, setShowScrollIndicator] = useState(false);
+	const [, setProgress] = useState(0);
+
+	const handleLoadingComplete = useCallback(() => {
+		setPhase("interactive");
+		setShowScrollIndicator(true);
+	}, []);
+
+	const handleScrollIndicatorHide = useCallback(() => {
+		setShowScrollIndicator(false);
+	}, []);
+
+	const handleHeroComplete = useCallback(() => {
+		onComplete?.();
+	}, [onComplete]);
+
+	const { containerRef } = useHeroAnimation({
+		phase,
+		setPhase,
+		setProgress,
+		onComplete: handleHeroComplete,
 	});
-	const sceneReveal = 0.35 + progress * 0.65;
-	const sceneInset = Math.max(0, 26 - progress * 26);
-	const sceneScale = 0.96 + progress * 0.08;
-	const sceneLift = progress * 28;
-	const gridOpacity = 0.42 + progress * 0.4;
-	const mountainOpacity = 0.48 + progress * 0.42;
-
-	const handleScrollToProjects = () => {
-		const projectsSection = document.getElementById("projects");
-
-		if (!projectsSection) {
-			return;
-		}
-
-		projectsSection.scrollIntoView({ behavior: "smooth", block: "start" });
-	};
-
-	const handleScrollToContact = () => {
-		const contactSection = document.getElementById("contact");
-
-		if (!contactSection) {
-			return;
-		}
-
-		contactSection.scrollIntoView({ behavior: "smooth", block: "start" });
-	};
 
 	return (
-		<section ref={ref} className="section-shell overflow-hidden" id="hero">
-			<div className="section-inner relative flex flex-col min-h-dvh">
-				<div aria-hidden="true" className="orb-glow hero-orb-left" />
-				<div aria-hidden="true" className="orb-glow hero-orb-right" />
+		<>
+			<LoadingScreen
+				onComplete={handleLoadingComplete}
+				isComplete={phase !== "loading"}
+			/>
 
-				<motion.div
-					className="relative z-10 flex flex-col items-center gap-6 text-center pt-20 pb-8"
-					initial="hidden"
-					animate="visible"
-					variants={heroStaggerVariants}
-				>
-					<motion.div variants={heroNameVariants}>
-						<GlitchText
-							as="h1"
-							className="text-4xl leading-[1.4] sm:text-6xl lg:text-7xl"
-							isActive={true}
-							tone="chrome"
-						>
-							Brian
-							<br />
-							Cordisco
-						</GlitchText>
-					</motion.div>
+			<ScrollIndicator
+				isVisible={showScrollIndicator}
+				onHide={handleScrollIndicatorHide}
+			/>
 
-					<motion.p
-						className="pixel-heading neon-text-cyan text-[0.72rem] tracking-[0.34em] sm:text-sm"
-						variants={heroRoleVariants}
-					>
-						{profile.role}
-						<span aria-hidden="true" className="cursor-block" />
-					</motion.p>
-
-					<motion.p
-						className="muted-copy max-w-2xl text-base leading-8 sm:text-lg"
-						variants={heroSummaryVariants}
-					>
-						{profile.summary[0]} {profile.summary[1]}
-					</motion.p>
-
-					<motion.div
-						className="flex flex-col gap-3 sm:flex-row"
-						variants={heroCtaVariants}
-					>
-						<Button
-							aria-label="Scroll to the projects section"
-							onClick={handleScrollToProjects}
-						>
-							View My Work
-						</Button>
-						<Button
-							accent="cyan"
-							aria-label="Contact Brian"
-							onClick={handleScrollToContact}
-						>
-							Start a Conversation
-						</Button>
-					</motion.div>
-				</motion.div>
-
-				<motion.div
-					aria-hidden="true"
-					className="hero-scene-shell flex-1"
-					style={{ clipPath: `inset(${sceneInset}% 0 0 0)` }}
-					initial={{ opacity: 0 }}
-					animate={{ opacity: 1 }}
-					transition={{ duration: 1.2, ease: "easeOut" }}
-				>
-					<div
-						className="hero-horizon-line"
-						style={{ transform: `translate3d(0, ${sceneLift * -0.32}px, 0)` }}
-					/>
-					<svg
-						aria-hidden="true"
-						className="hero-mountains"
-						focusable="false"
-						preserveAspectRatio="none"
-						style={{
-							opacity: mountainOpacity,
-							transform: `translate3d(0, ${sceneLift * -0.42}px, 0) scale(${sceneScale})`,
-						}}
-						viewBox="0 0 1000 360"
-					>
-						<polyline
-							fill="none"
-							points="0,260 110,190 170,220 250,138 326,228 402,164 470,232"
-							stroke="rgba(0, 208, 255, 0.9)"
-							strokeWidth="1.5"
-						/>
-						<polyline
-							fill="none"
-							points="530,232 616,156 694,232 770,148 840,216 906,174 1000,248"
-							stroke="rgba(0, 208, 255, 0.9)"
-							strokeWidth="1.5"
-						/>
-						<polyline
-							fill="none"
-							points="72,260 158,216 214,242 278,190 346,252 418,210"
-							stroke="rgba(140, 30, 255, 0.5)"
-							strokeWidth="1"
-						/>
-						<polyline
-							fill="none"
-							points="582,242 648,194 724,248 786,192 860,236 936,202"
-							stroke="rgba(140, 30, 255, 0.5)"
-							strokeWidth="1"
-						/>
-					</svg>
-
-					<div
-						className="hero-sun-wrap"
-						style={{
-							transform: `translate3d(0, ${sceneLift * -0.5}px, 0) scale(${sceneScale})`,
-						}}
-					>
-						<div className="hero-sun-inner">
-							<div className="sun-disc" />
+			<section
+				ref={containerRef}
+				className="relative h-screen w-full overflow-hidden bg-[#0D0B1E]"
+				id="hero"
+			>
+				{phase !== "loading" && (
+					<div className="relative h-full w-full">
+						<div className="absolute inset-0 flex items-center justify-center text-[#5DCAA5]">
+							<p className="pixel-heading text-sm">Hero Scene Placeholder</p>
 						</div>
 					</div>
-
-					<div
-						className="hero-grid-floor"
-						style={{
-							opacity: gridOpacity,
-							transform: `perspective(760px) rotateX(75deg) translateY(${progress * 18}px) scale(${0.98 + progress * 0.04})`,
-						}}
-					>
-						<SynthGrid revealProgress={sceneReveal} />
-					</div>
-					<VHSNoiseCanvas />
-				</motion.div>
-			</div>
-		</section>
+				)}
+			</section>
+		</>
 	);
 };
 
