@@ -46,7 +46,11 @@ const linkVariants = {
 	}),
 };
 
-export const Navbar = () => {
+interface NavbarProps {
+	isVisible?: boolean;
+}
+
+export const Navbar = ({ isVisible = true }: NavbarProps) => {
 	const [hasScrolled, setHasScrolled] = useState(false);
 	const [activeSection, setActiveSection] = useState("about");
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -108,75 +112,81 @@ export const Navbar = () => {
 	};
 
 	return (
-		<>
-			<header
-				className={cn(
-					"site-navbar",
-					hasScrolled && "site-navbar-scrolled site-navbar-gradient-border",
-				)}
-			>
-				<div className="section-inner flex flex-wrap items-center justify-between gap-4">
-					<a
-						aria-label="Jump to the hero section"
-						className="site-navbar-brand"
-						href="#hero"
-					>
-						{profile.siteLabel}
-					</a>
-
-					{!isMobile && (
-						<nav aria-label="Primary" className="site-navbar-links flex">
-							{navbarItems.map((item) => (
-								<a
-									key={item.href}
-									aria-label={`Jump to the ${item.label} section`}
-									className={cn(
-										"site-nav-link",
-										item.tone === "primary"
-											? "site-nav-link-primary"
-											: "site-nav-link-secondary",
-										activeSection === item.href &&
-											item.tone !== "primary" &&
-											"site-nav-link-active",
-									)}
-									href={item.href}
-								>
-									{item.label}
-								</a>
-							))}
-						</nav>
+		<AnimatePresence>
+			{isVisible && (
+				<motion.header
+					initial={{ opacity: 0, y: -20 }}
+					animate={{ opacity: 1, y: 0 }}
+					exit={{ opacity: 0, y: -20 }}
+					transition={{ duration: 0.4 }}
+					className={cn(
+						"site-navbar",
+						hasScrolled && "site-navbar-scrolled site-navbar-gradient-border",
 					)}
-
-					{isMobile && (
-						<button
-							aria-label="Toggle mobile menu"
-							aria-expanded={isMobileMenuOpen}
-							className="hamburger-button"
-							onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-							type="button"
+				>
+					<div className="section-inner flex flex-wrap items-center justify-between gap-4">
+						<a
+							aria-label="Jump to the hero section"
+							className="site-navbar-brand"
+							href="#hero"
 						>
-							<span
-								className={cn(
-									"hamburger-line",
-									isMobileMenuOpen && "hamburger-line-open",
-								)}
-							/>
-							<span
-								className={cn(
-									"hamburger-line",
-									isMobileMenuOpen && "hamburger-line-open",
-								)}
-							/>
-							<span
-								className={cn(
-									"hamburger-line",
-									isMobileMenuOpen && "hamburger-line-open",
-								)}
-							/>
-						</button>
-					)}
-				</div>
-			</header>
+							{profile.siteLabel}
+						</a>
+
+						{!isMobile && (
+							<nav aria-label="Primary" className="site-navbar-links flex">
+								{navbarItems.map((item) => (
+									<a
+										key={item.href}
+										aria-label={`Jump to the ${item.label} section`}
+										className={cn(
+											"site-nav-link",
+											item.tone === "primary"
+												? "site-nav-link-primary"
+												: "site-nav-link-secondary",
+											activeSection === item.href &&
+												item.tone !== "primary" &&
+												"site-nav-link-active",
+										)}
+										href={item.href}
+									>
+										{item.label}
+									</a>
+								))}
+							</nav>
+						)}
+
+						{isMobile && (
+							<button
+								aria-label="Toggle mobile menu"
+								aria-expanded={isMobileMenuOpen}
+								className="hamburger-button"
+								onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+								type="button"
+							>
+								<span
+									className={cn(
+										"hamburger-line",
+										isMobileMenuOpen && "hamburger-line-open",
+									)}
+								/>
+								<span
+									className={cn(
+										"hamburger-line",
+										isMobileMenuOpen && "hamburger-line-open",
+									)}
+								/>
+								<span
+									className={cn(
+										"hamburger-line",
+										isMobileMenuOpen && "hamburger-line-open",
+									)}
+								/>
+							</button>
+						)}
+					</div>
+				</motion.header>
+			)}
 
 			<AnimatePresence>
 				{isMobileMenuOpen && (
@@ -244,7 +254,7 @@ export const Navbar = () => {
 					aria-label="Close menu overlay"
 				/>
 			)}
-		</>
+		</AnimatePresence>
 	);
 };
 
