@@ -1,5 +1,5 @@
-import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import { useEffect, useRef } from "react";
 
 interface DeloreanProps {
 	scrollProgress: number;
@@ -12,7 +12,7 @@ export const Delorean = ({ scrollProgress, isVisible }: DeloreanProps) => {
 	useEffect(() => {
 		if (!carRef.current || !isVisible) return;
 
-		const tl = gsap.timeline({ paused: true });
+		const tl = gsap.timeline();
 
 		tl.fromTo(
 			carRef.current,
@@ -23,22 +23,12 @@ export const Delorean = ({ scrollProgress, isVisible }: DeloreanProps) => {
 				duration: 1.5,
 				ease: "power2.out",
 			},
-			0,
 		);
 
 		return () => {
 			tl.kill();
 		};
 	}, [isVisible]);
-
-	useEffect(() => {
-		if (!isVisible) return;
-
-		const allTl = gsap.globalTimeline;
-		if (allTl) {
-			allTl.progress(scrollProgress);
-		}
-	}, [scrollProgress, isVisible]);
 
 	return (
 		<div
@@ -82,10 +72,38 @@ export const Delorean = ({ scrollProgress, isVisible }: DeloreanProps) => {
 				/>
 				{/* Wheel spokes */}
 				<g className="wheel-spokes">
-					<line x1="55" y1="57" x2="55" y2="93" stroke="#22d3ee" strokeWidth="1" />
-					<line x1="37" y1="75" x2="73" y2="75" stroke="#22d3ee" strokeWidth="1" />
-					<line x1="145" y1="57" x2="145" y2="93" stroke="#22d3ee" strokeWidth="1" />
-					<line x1="127" y1="75" x2="163" y2="75" stroke="#22d3ee" strokeWidth="1" />
+					<line
+						x1="55"
+						y1="57"
+						x2="55"
+						y2="93"
+						stroke="#22d3ee"
+						strokeWidth="1"
+					/>
+					<line
+						x1="37"
+						y1="75"
+						x2="73"
+						y2="75"
+						stroke="#22d3ee"
+						strokeWidth="1"
+					/>
+					<line
+						x1="145"
+						y1="57"
+						x2="145"
+						y2="93"
+						stroke="#22d3ee"
+						strokeWidth="1"
+					/>
+					<line
+						x1="127"
+						y1="75"
+						x2="163"
+						y2="75"
+						stroke="#22d3ee"
+						strokeWidth="1"
+					/>
 				</g>
 			</svg>
 

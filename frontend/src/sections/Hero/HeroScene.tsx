@@ -1,15 +1,10 @@
-import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import ScrollTrigger from "gsap/ScrollTrigger";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CitySkyline } from "./scene/CitySkyline";
 import { Delorean } from "./scene/Delorean";
 import { GridRoad } from "./scene/GridRoad";
 import { HeroBanner } from "./scene/HeroBanner";
 import { Starfield } from "./scene/Starfield";
 import { SynthSun } from "./scene/SynthSun";
-
-gsap.registerPlugin(ScrollTrigger);
 
 export const HeroScene = ({
 	onSceneComplete,
@@ -25,103 +20,93 @@ export const HeroScene = ({
 	const [sceneComplete, setSceneComplete] = useState(false);
 	const [scrollProgress, setScrollProgress] = useState(0);
 
-	useGSAP(
-		() => {
-			if (!containerRef.current) return;
+	useEffect(() => {
+		// Animation sequence using setTimeout for reliability
+		const timeouts: ReturnType<typeof setTimeout>[] = [];
 
-			const tl = gsap.timeline({
-				scrollTrigger: {
-					trigger: containerRef.current,
-					start: "top top",
-					end: "+=3000",
-					scrub: 1,
-					pin: true,
-					anticipatePin: 1,
-					onUpdate: (self) => {
-						setScrollProgress(self.progress);
-						if (self.progress >= 0.95 && !sceneComplete) {
-							setSceneComplete(true);
-							onSceneComplete();
-						}
-					},
-				},
+		// Sun appears immediately
+		timeouts.push(setTimeout(() => setSunComplete(true), 100));
+
+		// Stars appear (0.5s)
+		timeouts.push(setTimeout(() => setStarsVisible(true), 500));
+
+		// Skyline emerges (1.5s)
+		timeouts.push(setTimeout(() => setSkylineVisible(true), 1500));
+
+		// DeLorean enters (2.5s)
+		timeouts.push(setTimeout(() => setDeloreanVisible(true), 2500));
+
+		// Banner reveals (3.5s)
+		timeouts.push(
+			setTimeout(() => {
+				setBannerVisible(true);
+			}, 3500),
+		);
+
+		// Scene complete (5s) - unlock scroll
+		timeouts.push(
+			setTimeout(() => {
+				setSceneComplete(true);
+				onSceneComplete();
+			}, 5000),
+		);
+
+		// Update progress bar for sun animation
+		const progressInterval = setInterval(() => {
+			setScrollProgress((prev) => {
+				if (prev >= 1) {
+					clearInterval(progressInterval);
+					return 1;
+				}
+				return prev + 0.02;
 			});
+		}, 100);
 
-			// Sun animation (0-20% of timeline)
-			tl.call(() => setSunComplete(true), [], 0.2);
-
-			// Stars appear (15-35%)
-			tl.call(() => setStarsVisible(true), [], 0.15);
-
-			// Skyline emerges (30-50%)
-			tl.call(() => setSkylineVisible(true), [], 0.3);
-
-			// DeLorean enters (45-65%)
-			tl.call(() => setDeloreanVisible(true), [], 0.45);
-
-			// Banner reveals (60-80%)
-			tl.call(() => setBannerVisible(true), [], 0.6);
-
-			return () => {
-				tl.kill();
-				ScrollTrigger.getAll().forEach((trigger) => {
-					trigger.kill();
-				});
-			};
-		},
-		{ scope: containerRef },
-	);
+		return () => {
+			timeouts.forEach(clearTimeout);
+			clearInterval(progressInterval);
+		};
+	}, [onSceneComplete]);
 
 	return (
-		<div ref={containerRef} className="relative w-full bg-slate-950">
-			{/* Fixed viewport container */}
-			<div className="relative w-full h-screen overflow-hidden">
-				{/* Starfield background */}
-				<Starfield
-					isVisible={
-						starsVisible || skylineVisible || deloreanVisible || bannerVisible
-					}
+		<div
+			ref={containerRef}
+			className="relative w-full h-screen overflow-hidden bg-slate-950"
+		>
+			{/* Starfield background */}
+			<Starfield
+				isVisible={
+					starsVisible || skylineVisible || deloreanVisible || bannerVisible
+				}
+			/>
+
+			{/* Sun in top right */}
+			{(sunComplete ||
+				starsVisible ||
+				skylineVisible ||
+				deloreanVisible ||
+				bannerVisible) && <SynthSun scrollProgress={scrollProgress} />}
+
+			{/* City skyline */}
+			{(skylineVisible || deloreanVisible || bannerVisible) && (
+				<CitySkyline
+					scrollProgress={scrollProgress}
+					isVisible={skylineVisible}
 				/>
+			)}
 
-				{/* Sun in top right */}
-				{(sunComplete ||
-					starsVisible ||
-					skylineVisible ||
-					deloreanVisible ||
-					bannerVisible) && <SynthSun scrollProgress={scrollProgress} />}
+			{/* Grid road */}
+			{(deloreanVisible || bannerVisible) && (
+				<GridRoad scrollProgress={scrollProgress} isVisible={deloreanVisible} />
+			)}
 
-				{/* City skyline */}
-				{(skylineVisible || deloreanVisible || bannerVisible) && (
-					<CitySkyline
-						scrollProgress={scrollProgress}
-						isVisible={skylineVisible}
-					/>
-				)}
+			{/* DeLorean */}
+			{(deloreanVisible || bannerVisible) && (
+				<Delorean scrollProgress={scrollProgress} isVisible={deloreanVisible} />
+			)}
 
-				{/* Grid road */}
-				{(deloreanVisible || bannerVisible) && (
-					<GridRoad
-						scrollProgress={scrollProgress}
-						isVisible={deloreanVisible}
-					/>
-				)}
-
-				{/* DeLorean */}
-				{(deloreanVisible || bannerVisible) && (
-					<Delorean
-						scrollProgress={scrollProgress}
-						isVisible={deloreanVisible}
-					/>
-				)}
-
-				{/* Banner text */}
-				{bannerVisible && <HeroBanner isVisible={bannerVisible} />}
-
-				{/* Mobile simplification note: On mobile, some elements may be hidden via CSS */}
-			</div>
-
-			{/* Spacer to provide scroll space for ScrollTrigger pin */}
-			<div className="h-[3000px]" />
+			{/* Banner text */}
+			{bannerVisible && <HeroBanner isVisible={bannerVisible} />}
 		</div>
 	);
 };
