@@ -1,0 +1,27 @@
+<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <clipPath id="sunClip">
+      <circle cx="100" cy="100" r="100" />
+    </clipPath>
+  </defs>
+  <g clip-path="url(#sunClip)">
+    <circle cx="100" cy="100" r="100" fill="url(#sunGradient)" />
+    <g id="stripes">
+      <rect x="0" y="60" width="200" height="12" fill="#0f172a" />
+      <rect x="0" y="78" width="200" height="10" fill="#0f172a" />
+      <rect x="0" y="94" width="200" height="8" fill="#0f172a" />
+      <rect x="0" y="108" width="200" height="7" fill="#0f172a" />
+      <rect x="0" y="121" width="200" height="6" fill="#0f172a" />
+      <rect x="0" y="133" width="200" height="5" fill="#0f172a" />
+      <rect x="0" y="144" width="200" height="4" fill="#0f172a" />
+      <rect x="0" y="154" width="200" height="3" fill="#0f172a" />
+    </g>
+  </g>
+  <defs>
+    <linearGradient id="sunGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#22d3ee" />
+      <stop offset="50%" style="stop-color:#a855f7" />
+      <stop offset="100%" style="stop-color:#d946ef" />
+    </linearGradient>
+  </defs>
+</svg>
