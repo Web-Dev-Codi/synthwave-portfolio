@@ -29,7 +29,7 @@ export const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
 					<div className="relative">
 						{/* Synthwave sun loader */}
 						<motion.div
-							className="w-24 h-24 rounded-full bg-gradient-to-t from-fuchsia-600 via-purple-500 to-cyan-400"
+							className="w-24 h-24 rounded-full bg-linear-to-t from-fuchsia-600 via-purple-500 to-cyan-400"
 							animate={{
 								scaleY: [0.3, 1],
 							}}

@@ -73,46 +73,55 @@ export const HeroScene = ({
 	);
 
 	return (
-		<div
-			ref={containerRef}
-			className="relative w-full h-screen overflow-hidden bg-slate-950"
-		>
-			{/* Starfield background */}
-			<Starfield
-				isVisible={
-					starsVisible || skylineVisible || deloreanVisible || bannerVisible
-				}
-			/>
-
-			{/* Sun in top right */}
-			{(sunComplete ||
-				starsVisible ||
-				skylineVisible ||
-				deloreanVisible ||
-				bannerVisible) && <SynthSun scrollProgress={scrollProgress} />}
-
-			{/* City skyline */}
-			{(skylineVisible || deloreanVisible || bannerVisible) && (
-				<CitySkyline
-					scrollProgress={scrollProgress}
-					isVisible={skylineVisible}
+		<div ref={containerRef} className="relative w-full bg-slate-950">
+			{/* Fixed viewport container */}
+			<div className="relative w-full h-screen overflow-hidden">
+				{/* Starfield background */}
+				<Starfield
+					isVisible={
+						starsVisible || skylineVisible || deloreanVisible || bannerVisible
+					}
 				/>
-			)}
 
-			{/* Grid road */}
-			{(deloreanVisible || bannerVisible) && (
-				<GridRoad scrollProgress={scrollProgress} isVisible={deloreanVisible} />
-			)}
+				{/* Sun in top right */}
+				{(sunComplete ||
+					starsVisible ||
+					skylineVisible ||
+					deloreanVisible ||
+					bannerVisible) && <SynthSun scrollProgress={scrollProgress} />}
 
-			{/* DeLorean */}
-			{(deloreanVisible || bannerVisible) && (
-				<Delorean scrollProgress={scrollProgress} isVisible={deloreanVisible} />
-			)}
+				{/* City skyline */}
+				{(skylineVisible || deloreanVisible || bannerVisible) && (
+					<CitySkyline
+						scrollProgress={scrollProgress}
+						isVisible={skylineVisible}
+					/>
+				)}
 
-			{/* Banner text */}
-			{bannerVisible && <HeroBanner isVisible={bannerVisible} />}
+				{/* Grid road */}
+				{(deloreanVisible || bannerVisible) && (
+					<GridRoad
+						scrollProgress={scrollProgress}
+						isVisible={deloreanVisible}
+					/>
+				)}
 
-			{/* Mobile simplification note: On mobile, some elements may be hidden via CSS */}
+				{/* DeLorean */}
+				{(deloreanVisible || bannerVisible) && (
+					<Delorean
+						scrollProgress={scrollProgress}
+						isVisible={deloreanVisible}
+					/>
+				)}
+
+				{/* Banner text */}
+				{bannerVisible && <HeroBanner isVisible={bannerVisible} />}
+
+				{/* Mobile simplification note: On mobile, some elements may be hidden via CSS */}
+			</div>
+
+			{/* Spacer to provide scroll space for ScrollTrigger pin */}
+			<div className="h-[3000px]" />
 		</div>
 	);
 };
