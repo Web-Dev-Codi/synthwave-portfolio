@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import { useHeroAnimation } from "../../hooks/useHeroAnimation";
+import { HeroScene } from "./HeroScene";
 import { LoadingScreen } from "./LoadingScreen";
 import { ScrollIndicator } from "./ScrollIndicator";
 import type { HeroPhase } from "./types";
@@ -11,7 +11,6 @@ interface HeroProps {
 export const Hero = ({ onComplete }: HeroProps) => {
 	const [phase, setPhase] = useState<HeroPhase>("loading");
 	const [showScrollIndicator, setShowScrollIndicator] = useState(false);
-	const [, setProgress] = useState(0);
 
 	const handleLoadingComplete = useCallback(() => {
 		setPhase("interactive");
@@ -23,15 +22,9 @@ export const Hero = ({ onComplete }: HeroProps) => {
 	}, []);
 
 	const handleHeroComplete = useCallback(() => {
+		setPhase("complete");
 		onComplete?.();
 	}, [onComplete]);
-
-	const { containerRef } = useHeroAnimation({
-		phase,
-		setPhase,
-		setProgress,
-		onComplete: handleHeroComplete,
-	});
 
 	return (
 		<>
@@ -45,19 +38,10 @@ export const Hero = ({ onComplete }: HeroProps) => {
 				onHide={handleScrollIndicatorHide}
 			/>
 
-			<section
-				ref={containerRef}
-				className="relative h-screen w-full overflow-hidden bg-[#0D0B1E]"
-				id="hero"
-			>
-				{phase !== "loading" && (
-					<div className="relative h-full w-full">
-						<div className="absolute inset-0 flex items-center justify-center text-[#5DCAA5]">
-							<p className="pixel-heading text-sm">Hero Scene Placeholder</p>
-						</div>
-					</div>
-				)}
-			</section>
+			<HeroScene
+				isActive={phase !== "loading"}
+				onComplete={handleHeroComplete}
+			/>
 		</>
 	);
 };
