@@ -1,6 +1,6 @@
-import { useRef, useLayoutEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useLayoutEffect, useRef } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -89,19 +89,92 @@ export const CitySkyline = ({ timelineRef }: CitySkylineProps) => {
 			>
 				<svg viewBox="0 0 200 250" className="h-auto w-full">
 					{/* Main tower */}
-					<rect x="60" y="50" width="80" height="200" fill="#0D0B1E" stroke="#D4537E" strokeWidth="2" />
+					<rect
+						x="60"
+						y="50"
+						width="80"
+						height="200"
+						fill="#0D0B1E"
+						stroke="#D4537E"
+						strokeWidth="2"
+					/>
 					{/* Windows */}
-					<rect x="75" y="70" width="15" height="15" fill="#D4537E" opacity="0.6" />
-					<rect x="110" y="70" width="15" height="15" fill="#D4537E" opacity="0.6" />
-					<rect x="75" y="100" width="15" height="15" fill="#D4537E" opacity="0.4" />
-					<rect x="110" y="100" width="15" height="15" fill="#D4537E" opacity="0.4" />
-					<rect x="75" y="130" width="15" height="15" fill="#D4537E" opacity="0.6" />
-					<rect x="110" y="130" width="15" height="15" fill="#D4537E" opacity="0.6" />
+					<rect
+						x="75"
+						y="70"
+						width="15"
+						height="15"
+						fill="#D4537E"
+						opacity="0.6"
+					/>
+					<rect
+						x="110"
+						y="70"
+						width="15"
+						height="15"
+						fill="#D4537E"
+						opacity="0.6"
+					/>
+					<rect
+						x="75"
+						y="100"
+						width="15"
+						height="15"
+						fill="#D4537E"
+						opacity="0.4"
+					/>
+					<rect
+						x="110"
+						y="100"
+						width="15"
+						height="15"
+						fill="#D4537E"
+						opacity="0.4"
+					/>
+					<rect
+						x="75"
+						y="130"
+						width="15"
+						height="15"
+						fill="#D4537E"
+						opacity="0.6"
+					/>
+					<rect
+						x="110"
+						y="130"
+						width="15"
+						height="15"
+						fill="#D4537E"
+						opacity="0.6"
+					/>
 					{/* Side wings */}
-					<rect x="30" y="120" width="30" height="130" fill="#0D0B1E" stroke="#534AB7" strokeWidth="1.5" />
-					<rect x="140" y="120" width="30" height="130" fill="#0D0B1E" stroke="#534AB7" strokeWidth="1.5" />
+					<rect
+						x="30"
+						y="120"
+						width="30"
+						height="130"
+						fill="#0D0B1E"
+						stroke="#534AB7"
+						strokeWidth="1.5"
+					/>
+					<rect
+						x="140"
+						y="120"
+						width="30"
+						height="130"
+						fill="#0D0B1E"
+						stroke="#534AB7"
+						strokeWidth="1.5"
+					/>
 					{/* Spire */}
-					<line x1="100" y1="50" x2="100" y2="20" stroke="#D4537E" strokeWidth="2" />
+					<line
+						x1="100"
+						y1="50"
+						x2="100"
+						y2="20"
+						stroke="#D4537E"
+						strokeWidth="2"
+					/>
 					<circle cx="100" cy="15" r="5" fill="#D4537E" />
 				</svg>
 			</div>

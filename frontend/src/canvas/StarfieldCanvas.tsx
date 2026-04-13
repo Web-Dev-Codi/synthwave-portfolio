@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { usePrefersReducedMotion } from "../hooks/useScrollAnimation";
 import { cn } from "../utils/cn";
-import type { Star } from "./StarfieldCanvas.types";
+import type { Star, StarfieldCanvasProps } from "./StarfieldCanvas.types";
 
 const starColors = [
 	"rgba(255,255,255,0.95)",

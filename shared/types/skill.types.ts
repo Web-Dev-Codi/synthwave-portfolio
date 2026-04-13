@@ -1,7 +1,7 @@
-import type { IconType } from "react-icons";
+export type IconComponent = (props: { size?: number }) => any;
 
 export interface Skill {
-	icon: IconType;
+	icon: IconComponent;
 	name: string;
 	color: string;
 	size?: number;
